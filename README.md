@@ -4,6 +4,8 @@
 
 ## Name TBD
 
+![The main characters of the game](sample.png)
+
 A simple game about how fun it can be to create stories with friends.
 
 Play as a nerdy middle-school dungeon master trying to teach her excitable (and notably "normie") friends how to play a tabletop RPG.
