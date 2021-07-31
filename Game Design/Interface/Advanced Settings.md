@@ -153,10 +153,10 @@ Determines the maximum number of segments/scenarios that can be in a single Enco
 Text input field, default "7"
 
 ### Battle Occurrence
-Determines how often the party will encounter random enemies.
-* Low: 10% of max number of scenarios
-* Normal: 30% of max number of scenarios
-* High: 50% of max number of scenarios
+Determines how often the party will be presented with a battle scenario option.
+* Low: 30% of number of scenarios
+* Normal: 50% of number of scenarios
+* High: 80% of number of scenarios
 
 Low/Normal/High, default Normal
 
