@@ -24,4 +24,6 @@ For each action, the character must roll the dice to determine the minimum Attri
 
 Whether each action succeeds or fails determines which actions the next character can take.
 
-Each segment/scenario only lasts long enough for all (active) characters to perform at least one action.
+Most segment/scenarios have an objective that must be completed before you can move on.
+
+All segment/scenario should last long enough for all (active) characters to perform at least one action. Some scenarios, like enemy encounters, may require several rounds of actions to complete the objective.

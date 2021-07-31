@@ -141,3 +141,37 @@ On/Others Only/Off, default Others Only (manually select actions when it's the m
 A specific seed can be used to ensure that particular "random" options are chosen, perhaps to share with someone else. This can impact which scenes and options are shown during encounters as well as any randomization options turned on in Advanced Settings.
 
 Text input field, default is programmatically generated on new game
+
+### Min Number of Scenarios
+Determines the minimum number of segments/scenarios that can be in a single Encounter.
+
+Text input field, default "5"
+
+### Max Number of Scenarios
+Determines the maximum number of segments/scenarios that can be in a single Encounter.
+
+Text input field, default "7"
+
+### Battle Occurrence
+Determines how often the party will encounter random enemies.
+* Low: 10% of max number of scenarios
+* Normal: 30% of max number of scenarios
+* High: 50% of max number of scenarios
+
+Low/Normal/High, default Normal
+
+### Battle Difficulty
+Determines how challenging enemies are to defeat.
+* Casual: enemies have 50% less health and do 50% less damage
+* Easy: enemies have 25% less health and do 25% less damage
+* Normal: enemies have normal amount of health and do normal amount of damage
+* Hard: enemies have 25% more health and do 25% more damage
+* Nightmare: enemies have 50% more health and do 50% more damage
+
+Casual/Easy/Normal/Hard/Nightmare, default Normal
+
+### Puzzle Difficulty
+Determines how challenging puzzle scenarios are.
+* Easy: puzzles give extra hints, traps do less damage
+* Normal: puzzles give a few hints, traps do normal amount of damage
+* Hard: puzzles give no hints, traps do more damage

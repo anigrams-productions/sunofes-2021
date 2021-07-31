@@ -30,9 +30,10 @@ Design and customize interface (Deadline: 9/3/2021)
 - [ ] Main menu
 - [ ] Game within the game
 - [ ] Dice rolling
-- [ ] Select music tracks
+- [ ] Music
 - [ ] Text box
 - [ ] Choices
-- [ ] Options menu
+- [ ] Settings menu
 - [ ] Save/Load menu
 - [ ] Favicon
+- [ ] Advanced Settings menu
