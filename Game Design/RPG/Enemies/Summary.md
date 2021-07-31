@@ -9,7 +9,10 @@ Each enemy has:
 * Description
 * Health
 * Mana
-* Attack Damage
+* Attributes
+    * Style
+    * Magic
+    * Wisdom
 * Actions (% chance depends on type of enemy)
     * Attack
     * Flee
