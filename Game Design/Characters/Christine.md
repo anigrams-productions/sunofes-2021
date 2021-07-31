@@ -1,4 +1,4 @@
-# Christine
+# Christine: The Sporty One
 
 ![Christine](Images/Christine.png)
 

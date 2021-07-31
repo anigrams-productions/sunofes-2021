@@ -1,4 +1,4 @@
-# Jane
+# Jane: The Perfect One
 
 ![Jane](Images/Jane.png)
 

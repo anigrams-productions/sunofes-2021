@@ -1,4 +1,4 @@
-# Lisa
+# Lisa: The Nerdy One
 
 ![Lisa](Images/Lisa.png)
 
