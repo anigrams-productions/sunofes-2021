@@ -1,0 +1,7 @@
+# Attributes
+
+## Style
+
+## Magic
+
+## Wisdom
