@@ -8,13 +8,13 @@
 
 A simple game about how fun it can be to create stories with friends.
 
-Play as a nerdy middle-school dungeon master trying to teach her excitable (and notably "normie") friends how to play a tabletop RPG.
+Play as a nerdy middle-school girl trying to teach her excitable (and notably "normie") friends how to play a tabletop RPG.
 
 The game is split into 5 themed encounters, each consisting of 5-7 randomized segments where the player must select a "card" to determine which dangerous situation to throw the party into next.
 
 ## To-Do
 Plan out the game (Deadline: 8/7/2021)
-- [ ] Design or decide on a tabletop RPG system to use
+- [x] Design or decide on a tabletop RPG system to use
 - [x] Flesh out characters, personalities, and quirks
 - [x] Determine overall story (if there is one)
 - [ ] Determine story and "cards" available for each encounter
