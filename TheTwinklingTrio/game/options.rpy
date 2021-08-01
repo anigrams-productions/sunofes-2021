@@ -16,7 +16,7 @@ define config.name = _("The Twinkling Trio")
 
 # Once program starts, set the game title to be what's currently saved in preferences
 init python:
-    config.name = preferences.group_name
+    config.name = preferences.rpg_group_name
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
