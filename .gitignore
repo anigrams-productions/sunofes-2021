@@ -1,2 +1,9 @@
 Assets
 .vs
+sync.ffs_db
+log.txt
+cache
+saves
+tl
+*.bak
+*.rpyc
