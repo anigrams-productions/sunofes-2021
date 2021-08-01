@@ -18,11 +18,10 @@ Plan out the game (Deadline: 8/7/2021)
 - [x] Flesh out characters, personalities, and quirks
 - [x] Determine overall story (if there is one)
 - [x] Determine story and scenarios ("cards") available for each encounter
-- [ ] Flesh out enemies
-- [ ] Flesh out scenarios
 - [ ] Outline each encounter
 
 Write scripts (Deadline: 8/18/2021)
+- [ ] Game System
 - [ ] Encounter 1
 - [ ] Encounter 2
 - [ ] Encounter 3
@@ -30,10 +29,10 @@ Write scripts (Deadline: 8/18/2021)
 - [ ] Encounter 5
 
 Design and customize interface (Deadline: 9/3/2021)
+- [ ] Music
 - [ ] Main menu
 - [ ] Game within the game
 - [ ] Dice rolling
-- [ ] Music
 - [ ] Text box
 - [ ] Choices
 - [ ] Settings menu
