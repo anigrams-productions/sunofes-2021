@@ -61,3 +61,14 @@ If a character runs out of Mana, they will no longer be able to perform Magic-ba
 The amount of currency a character has to spend on items of value.
 
 If a character runs out of Money, they will no longer be able to perform actions that cost Money.
+
+
+## Progression
+
+### Level
+The measure of a character's overall strength and skill as a result of gaining experience.
+
+When a character earns enough experience to move up a level, they receive one additional Attribute Point that can be allocated to one of the three main attributes. Level ups are determined at the end of each segment/scenario.
+
+### Experience Points
+The measure of a character's experience, earned through completing actions. Successful actions earn more experience points than failed actions.

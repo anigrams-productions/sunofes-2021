@@ -105,6 +105,8 @@ Text input field, default "100"
 ### Restore Health After Encounter
 Determines whether each character's Health is reset to the Starting Health value after each encounter.
 
+NOTE: If this setting is turned off and all three characters are forced to retreat (Health drops to 0), the player will be forced to sacrifice all the characters' Money to revive them and start back at full Health at the beginning of the next encounter.
+
 On/Off, default On
 
 ### Restore Mana After Encounter
