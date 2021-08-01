@@ -9,9 +9,9 @@
 * Health: 200
 * Mana: 200
 * Attributes
-	* Style: 
-	* Magic: 
-	* Wisdom:
+	* Style: 11 (Average)
+	* Magic: 11 (Average)
+	* Wisdom: 8 (Average)
 
 ### Actions
 * Attack
@@ -36,13 +36,13 @@
 
 (description goes here)
 
-* Type: Dragon
+* Type: Orc
 * Health: 200
 * Mana: 200
 * Attributes
-	* Style: 
-	* Magic: 
-	* Wisdom:
+	* Style: 15 (Expert)
+	* Magic: 13 (Average)
+	* Wisdom: 13 (Average)
 
 ### Actions
 * Attack

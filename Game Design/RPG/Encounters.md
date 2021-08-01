@@ -47,7 +47,11 @@ Each encounter has a unique theme, which includes a setting and story objective,
 * NPC encounter
     * Traveling merchant
     * Quest giver
-    * Priest/priestess (can bless you for a price)
+    * Priest/priestess (can bless/curse you for a price - lasts for the rest of the Encounter)
+        * Increase Max Health
+        * Increase Max Mana
+        * Increase Luck (increases Money and other rewards)
+        * Resist Poison?
     * Bard (tells a short story or performs a song)
     * Special (one per stage)
 * Find free loot (treasure)

@@ -6,9 +6,9 @@ Each character starts with some number of Attribute Points that can be allocated
 The player may choose from three "levels" to determine how many points are allocated to that attribute.
 
 ### Levels
-* Novice: low number of Attribute points are allocated
-* Average: medium number of Attribute points are allocated
-* Expert: high number of Attribute points are allocated
+* Novice: low number (0-6) of Attribute points are allocated
+* Average: medium number (7-13) of Attribute points are allocated
+* Expert: high number (14+) of Attribute points are allocated
 
 
 ## Main Attributes
@@ -39,6 +39,8 @@ For example, if an action requires 14 Magic, but the character only has 13 Magic
 If a character has a Weakness in a particular attribute, they will have a -1 attribute modifier. This number is _subtracted_ from the number of attribute points a character has allocated.
 
 Using a similar example, if an action requires 14 Magic and the character has 14 Magic attribute points, normally they would pass the check. However, if the character's weakness is Magic, their total Magic attribute value is actually 14 - 1 = 13, which would fail the check.
+
+Resource costs can also modified by a character's Strength. For example, a character whose strength is Magic will use less Mana while taking action, so if the Magic-based action costs 10 Mana, this particular character will only lose 10 - 1 = 9 Mana.
 
 
 ## Resources
