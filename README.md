@@ -17,7 +17,10 @@ Plan out the game (Deadline: 8/7/2021)
 - [x] Design or decide on a tabletop RPG system to use
 - [x] Flesh out characters, personalities, and quirks
 - [x] Determine overall story (if there is one)
-- [ ] Determine story and "cards" available for each encounter
+- [x] Determine story and scenarios ("cards") available for each encounter
+- [ ] Flesh out enemies
+- [ ] Flesh out scenarios
+- [ ] Outline each encounter
 
 Write scripts (Deadline: 8/18/2021)
 - [ ] Encounter 1
