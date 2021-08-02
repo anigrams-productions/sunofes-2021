@@ -6,6 +6,7 @@ init python:
     ## Usage: MyEnum = emum("One", "Two", "Three")
     ## Retuns an object of type Enum with the following properties and values: { One: 1, Two: 2, Three: 3 }
     ## These values can then be referenced like MyEnum.One
+    ## Custom values can also be passed in like enum(One="one", Two="two", Three="three")
     def enum(*sequential, **named):
         enums = dict(zip(sequential, range(len(sequential))), **named)
         return type('Enum'.encode('utf8'), (), enums)
