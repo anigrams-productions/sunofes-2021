@@ -2,11 +2,6 @@
 ## These will eventually be modifiable through the Advanced Settings menu.
 ## More details: https://github.com/anigrams-productions/sunofes-2021/blob/main/Game%20Design/Interface/Advanced%20Settings.md
 
-# Initialize Enumerations
-define AutoSelection = enum("On", "Others", "Off")
-define Frequency = enum("Low", "Normal", "High")
-define Difficulty = enum("Casual", "Easy", "Normal", "Hard", "Nightmare")
-
 ## NAMES
 #### char = character
 default preferences.char_nerdy_name = "Lisa"
