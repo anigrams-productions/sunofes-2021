@@ -13,6 +13,7 @@ init python:
         CharacterType.Sporty: Hero(CharacterType.Sporty),
         CharacterType.Perfect: Hero(CharacterType.Perfect)
     }
+    rpg_current_player = CharacterType.Nerdy
 
 # The game starts here.
 
@@ -34,7 +35,7 @@ label start:
 
     # These display lines of dialogue.
 
-    $ rpg_current_encounter = Encounter(Theme.Field, rpg_players)
+    $ rpg_current_encounter = Encounter(Theme.Field, rpg_players, rpg_players[rpg_current_player])
 
     call expression "encounter_" + rpg_current_encounter.theme + "_start"
 

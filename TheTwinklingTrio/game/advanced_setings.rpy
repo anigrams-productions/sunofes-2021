@@ -83,6 +83,8 @@ default preferences.rpg_random_seed = None
 default preferences.rpg_random_min_scenarios = 5
 default preferences.rpg_random_max_scenarios = 7
 
+default preferences.rpg_number_scenario_options = 3
+
 ## GAMEPLAY - AUTOMATION
 #### auto = automatic
 default preferences.rpg_auto_scenarios = AutoSelection.Others

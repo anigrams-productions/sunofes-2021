@@ -44,6 +44,17 @@ define gui.about = _p("""
 define build.name = "TheTwinklingTrio"
 
 
+## Disable rollback
+
+define config.rollback_enabled = False
+
+
+## Enable style inspector
+## TODO: Comment out before releasing the game
+
+define config.developer = True
+
+
 ## Sounds and music ############################################################
 
 ## These three variables control which mixers are shown to the player by

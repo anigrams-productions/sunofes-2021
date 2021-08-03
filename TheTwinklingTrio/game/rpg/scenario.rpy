@@ -1,4 +1,7 @@
 init python:
+    rpg_scenario_warning_label = "!!!"
+    rpg_scenario_discovery_label = "???"
+    
     class Scenario:
         def __init__(self, theme, scenario_type):
             # details we need to know and initialize about the scenario
@@ -7,26 +10,37 @@ init python:
 
             if self.scenario_type == ScenarioType.Enemy:
                 self.script = self.get_enemy()
+                self.menu_label = ScenarioType.Enemy.capitalize()
             elif self.scenario_type == ScenarioType.Boss:
                 self.script = self.get_boss()
+                self.menu_label = rpg_scenario_warning_label
             elif self.scenario_type == ScenarioType.Merchant:
                 self.script = self.get_merchant()
+                self.menu_label = ScenarioType.Merchant.capitalize()
             elif self.scenario_type == ScenarioType.Priest:
                 self.script = self.get_priest()
+                self.menu_label = ScenarioType.Priest.capitalize()
             elif self.scenario_type == ScenarioType.Bard:
                 self.script = self.get_bard()
+                self.menu_label = rpg_scenario_discovery_label
             elif self.scenario_type == ScenarioType.Quest:
                 self.script = self.get_quest()
+                self.menu_label = rpg_scenario_warning_label
             elif self.scenario_type == ScenarioType.Special:
                 self.script = self.get_special()
+                self.menu_label = rpg_scenario_warning_label
             elif self.scenario_type == ScenarioType.Campfire:
                 self.script = self.get_campfire()
+                self.menu_label = ScenarioType.Campfire.capitalize()
             elif self.scenario_type == ScenarioType.Treasure:
                 self.script = self.get_treasure()
+                self.menu_label = rpg_scenario_discovery_label
             elif self.scenario_type == ScenarioType.Puzzle:
                 self.script = self.get_puzzle()
+                self.menu_label = rpg_scenario_discovery_label
             elif self.scenario_type == ScenarioType.Trap:
                 self.script = self.get_trap()
+                self.menu_label = rpg_scenario_discovery_label
             else:
                 raise ValueError("Invalid scenario type {scenario_type} specified.")
 

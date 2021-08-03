@@ -421,10 +421,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     style_prefix "game_menu"
 
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
+    add gui.game_menu_background
 
     frame:
         style "game_menu_outer_frame"
@@ -527,7 +524,7 @@ style game_menu_label:
 
 style game_menu_label_text:
     size gui.title_text_size
-    color gui.accent_color
+    color gui.title_text_color
     yalign 0.5
 
 style return_button:
@@ -831,6 +828,7 @@ style pref_label:
     bottom_margin 3
 
 style pref_label_text:
+    color gui.title_text_color
     yalign 1.0
 
 style pref_vbox:
@@ -954,6 +952,7 @@ style history_text:
     xsize gui.history_text_width
     min_width gui.history_text_width
     text_align gui.history_text_xalign
+    color gui.idle_color
     layout ("subtitle" if gui.history_text_xalign else "tex")
 
 style history_label:

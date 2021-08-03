@@ -23,24 +23,24 @@ init python:
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = u'#003366'
+define gui.accent_color = u'#8585b6'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = u'#aaaaaa'
+define gui.idle_color = u'#f5f5f5'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
-define gui.idle_small_color = u'#888888'
+define gui.idle_small_color = u'#ffffff'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = u'#003366'
+define gui.hover_color = u'#8585b6'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = u'#555555'
+define gui.selected_color = u'#003366'
 
 ## The color used for a text button when it cannot be selected.
-define gui.insensitive_color = u'#aaaaaa7f'
+define gui.insensitive_color = u'#c2c2c2'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
@@ -55,16 +55,16 @@ define gui.interface_text_color = u'#404040'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "fonts/normal/Gaegu-Regular.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "fonts/normal/Chilanka-Regular.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "fonts/normal/Chilanka-Regular.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 28
+define gui.text_size = 32
 
 ## The size of character names.
 define gui.name_text_size = 38
@@ -80,6 +80,9 @@ define gui.notify_text_size = 20
 
 ## The size of the game's title.
 define gui.title_text_size = 63
+define gui.title_text_color = u'#ffffff'
+
+define gui.version_text_color = u'#ffffff'
 
 
 ## Main and Game Menus #########################################################
@@ -183,12 +186,13 @@ define gui.radio_button_borders = Borders(23, 5, 5, 5)
 define gui.check_button_borders = Borders(23, 5, 5, 5)
 
 define gui.confirm_button_text_xalign = 0.5
+define gui.confirm_button_text_idle_color = gui.text_color
 
 define gui.page_button_borders = Borders(13, 5, 13, 5)
 
 define gui.quick_button_borders = Borders(13, 5, 13, 0)
 define gui.quick_button_text_size = 18
-define gui.quick_button_text_idle_color = gui.idle_small_color
+define gui.quick_button_text_idle_color = gui.text_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
 ## You can also add your own customizations, by adding properly-named variables.
@@ -209,9 +213,9 @@ define gui.choice_button_borders = Borders(125, 7, 125, 7)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = "#cccccc"
+define gui.choice_button_text_idle_color = gui.text_color
 define gui.choice_button_text_hover_color = "#ffffff"
-define gui.choice_button_text_insensitive_color = "#444444"
+define gui.choice_button_text_insensitive_color = gui.insensitive_color
 
 
 ## File Slot Buttons ###########################################################

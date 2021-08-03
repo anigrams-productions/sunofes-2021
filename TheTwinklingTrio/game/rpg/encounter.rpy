@@ -12,7 +12,7 @@ init python:
     ]
 
     class Encounter:
-        def __init__(self, theme, players):
+        def __init__(self, theme, players, current_player):
             # details we need to know and initialize about the encounter
             self.theme = theme
             self.players = players
@@ -23,13 +23,14 @@ init python:
             # generate list of possible scenarios based on battle frequency setting
             self.scenarios = self.get_scenarios(self.get_battle_frequency())
 
-            # make sure to add on quest, special, and boss scenarios after determining random scenarios
-            self.scenarios.insert(0, Scenario(self.theme, ScenarioType.Quest)) # quest giver
-            self.scenarios.append(Scenario(self.theme, ScenarioType.Boss)) # boss battle
-            self.scenarios.append(Scenario(self.theme, ScenarioType.Special)) # objective
+            # make sure to add quest, special, and boss scenarios after determining random scenarios
+            self.scenario_quest = Scenario(self.theme, ScenarioType.Quest)
+            self.scenario_boss = Scenario(self.theme, ScenarioType.Boss)
+            self.scenario_special = Scenario(self.theme, ScenarioType.Special)
 
             # keep track of which scenario we're currently on, default 0 (first)
             self.current_scenario = self.scenarios[0]
+            self.current_player = current_player
 
             # reset resource values if options are enabled
             for player in self.get_active_players():
@@ -45,7 +46,7 @@ init python:
             return filter(lambda player: player.is_active(), self.players.values())
 
         def get_battle_frequency(self):
-            # translate battle frequency preference into a percentage of scenarios
+            # translate battle frequency preference into a number of scenarios
             if preferences.rpg_option_battle_frequency == Frequency.Low:
                 return .3
             elif preferences.rpg_option_battle_frequency == Frequency.Normal:
@@ -57,6 +58,12 @@ init python:
 
         def get_scenarios(self, battle_frequency):
             scenarios = []
+            
+            # add non-combat encounters since there will always be the same number
+            for scenario in NonCombatScenarioTypes:
+                scenarios.append(Scenario(self.theme, scenario))
+
+            # calculate how many enemy scenarios to include based on battle frequency option
             number_of_enemy_scenarios = int(math.floor(self.number_of_scenarios * battle_frequency))
             
             # sanity check: need to have at least one enemy and can't have more enemies than scenarios available
@@ -68,36 +75,34 @@ init python:
             for n in range(number_of_enemy_scenarios):
                 scenarios.append(Scenario(self.theme, ScenarioType.Enemy))
 
-            # now to fill in the rest of the scenarios with non-combat encounters
-            number_remaining_scenarios = self.number_of_scenarios - number_of_enemy_scenarios
-            remaining_scenarios = renpy.random.sample(NonCombatScenarioTypes, number_remaining_scenarios)
-
-            for scenario in remaining_scenarios:
-                scenarios.append(Scenario(self.theme, scenario))
-
-            renpy.random.shuffle(scenarios)
-
             return scenarios
 
-        # def next_scenario(self):
-            # TODO: call each character's level_up() method
+        def pick_random_scenarios(self):
+            number_of_samples = preferences.rpg_number_scenario_options
+            number_of_scenarios = len(self.scenarios)
 
-            # TODO: check if party has failed prematurely (all characters dead) - if so, call return_failure()
+            # sanity check: make sure we only get as many as still exist
+            if number_of_samples > number_of_scenarios:
+                number_of_samples = number_of_scenarios
 
-            # TODO: check if we've reached the end of the encounter - if so, call return_success()
-
-            # if we can't hit anything yet, call pick_scenarios_for_selection()
-
-        # def pick_scenarios_for_selection(self):
-            # TODO: Pick 3 random scenarios from list of possible scenarios
+            return renpy.random.sample(self.scenarios, number_of_samples)
 
         def select_scenario(self, scenario):
-            # TODO: Do something with the scenario selected
+            # set current scenario to the one that was passed in
+            self.current_scenario = scenario
 
-            self.current_scenario += 1
+            # remove the scenario from the list of possible scenarios so it can't be picked again
+            self.scenarios.remove(scenario)
 
-        # def get_success(self):
-            # TODO: indicate encounter completed successfully
+        def get_next_player(self):
+            players_as_list = list(self.players.values())
+            current_index = players_as_list.index(self.current_player)
+            current_index += 1
 
-        # def get_failure(self):
-            # TODO: indicate encounter did NOT complete successfully
+            # if we reach the end of the list, start back at 0
+            if current_index > (len(self.players) - 1):
+                current_index = 0
+
+            self.current_player = players_as_list[current_index]
+
+            return self.current_player.character_type
