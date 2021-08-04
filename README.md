@@ -13,29 +13,48 @@ Play as a nerdy middle-school girl trying to teach her excitable (and notably "n
 The game is split into 5 themed encounters, each consisting of 5-7 randomized segments where the player must select a "card" to determine which dangerous situation to throw the party into next.
 
 ## To-Do
-Plan out the game (Deadline: 8/7/2021)
+Planning
 - [x] Design or decide on a tabletop RPG system to use
 - [x] Flesh out characters, personalities, and quirks
 - [x] Determine overall story (if there is one)
 - [x] Determine story and scenarios ("cards") available for each encounter
-- [ ] Outline each encounter
 
-Write scripts (Deadline: 8/18/2021)
-- [ ] Game System
-- [ ] Encounter 1
-- [ ] Encounter 2
-- [ ] Encounter 3
-- [ ] Encounter 4
-- [ ] Encounter 5
+Writing
+- [ ] Field - Intro
+- [ ] Field - Scenarios
+- [ ] Field - Endings
 
-Design and customize interface (Deadline: 9/3/2021)
-- [ ] Music
-- [ ] Main menu
-- [ ] Game within the game
-- [ ] Dice rolling
-- [ ] Text box
-- [ ] Choices
-- [ ] Settings menu
-- [ ] Save/Load menu
-- [ ] Favicon
+- [ ] Volcano - Intro
+- [ ] Volcano - Scenarios
+- [ ] Volcano - Endings
+
+- [ ] Desert - Intro
+- [ ] Desert - Scenarios
+- [ ] Desert - Endings
+
+- [ ] Snow - Intro
+- [ ] Snow - Scenarios
+- [ ] Snow - Endings
+
+- [ ] Graveyard - Intro
+- [ ] Graveyard - Scenarios
+- [ ] Graveyard - Endings
+
+Programming
+- [x] Outer Gameplay Loop (Encounter)
+- [ ] Inner Gameplay Loop (Scenario)
+- [ ] Add Music
+
+Extra Programming (if there's time)
 - [ ] Advanced Settings menu
+- [ ] Stats screen
+
+Extra (after the Game Jam)
+- [ ] Custom main menu
+- [ ] Custom text box
+- [ ] Custom choices
+- [ ] Custom Settings menu
+- [ ] Custom Save/Load menu
+- [ ] RPG dialogue GUI
+- [ ] RPG shop GUI
+- [ ] RPG scenario selection GUI

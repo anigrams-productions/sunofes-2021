@@ -14,7 +14,7 @@ init python:
                 self.name = preferences.rpg_char_perfect_name
                 self.title = preferences.rpg_char_perfect_title
             else:
-                raise ValueError("Invalid character type {character_type} specified.")
+                raise ValueError("Invalid character type " + character_type + " specified.")
 
             self.icon = character_type + ' icon'
 
@@ -30,6 +30,24 @@ init python:
             self.level = 1
             self.experience_points = 0
             self.experience_needed = 100
+
+            # used to keep track of "memories" from each encounter
+            self.enemies_met = []
+            self.enemies_defeated = []
+            self.enemies_defeated_by = []
+            self.bosses_met = []
+            self.bosses_defeated = []
+            self.bosses_defeated_by = []
+            self.merchants_met = []
+            self.merchant_items_purchased = []
+            self.priests_met = []
+            self.priest_blessings_purchased = []
+            self.bards_met = []
+            self.treasure_found = []
+            self.puzzles_encountered = []
+            self.puzzles_solved = []
+            self.traps_encountered = []
+            self.traps_defeated = []
 
         def can_level_up(self):
             return self.is_active() and (self.experience_points >= self.experience_needed)

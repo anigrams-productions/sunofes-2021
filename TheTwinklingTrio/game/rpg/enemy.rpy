@@ -52,3 +52,61 @@ define FieldBosses = [
     Enemy(Theme.Field, EnemyType.Dragon, "Earth Dragon", "", 200, 200, 11, 11, 8),
     Enemy(Theme.Field, EnemyType.Orc, "Orc Boss", "", 200, 200, 15, 13, 13)
 ]
+
+define GraveyardEnemies = [
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Radioactive Ghoul", "01", 100, 100, 14, 9, 7),
+    Enemy(Theme.Graveyard, EnemyType.Mammal, "Floppy Bat", "01", 75, 100, 16, 7, 14),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Skeleton Bear", "02", 125, 100, 7, 12, 5),
+    Enemy(Theme.Graveyard, EnemyType.Spirit, "Cursed Doll", "02", 75, 125, 12, 17, 9),
+    Enemy(Theme.Graveyard, EnemyType.Mammal, "Grey Wolf", "02", 100, 125, 6, 15, 13),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Archaic Mummy", "04", 100, 125, 13, 14, 8),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Skeleton Hunter", "09", 100, 75, 6, 6, 14),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Skeleton Knight", "10", 100, 125, 13, 18, 13),
+    Enemy(Theme.Graveyard, EnemyType.Insect, "Evil Spider", "02", 100, 75, 9, 6, 17),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Fleshy Zombie", "11", 100, 100, 16, 13, 15)
+]
+
+define GraveyardBosses = [
+    Enemy(Theme.Graveyard, EnemyType.Knight, "Dark Lord", "", 200, 250, 17, 16, 13),
+    Enemy(Theme.Graveyard, EnemyType.Undead, "Immortal Dragon", "", 250, 200, 12, 9, 4)
+]
+
+define SnowEnemies = [
+    Enemy(Theme.Snow, EnemyType.Mammal, "Polar Bear", "02", 125, 75, 12, 6, 12),
+    Enemy(Theme.Snow, EnemyType.Fish, "Sea Creature", "01", 100, 125, 10, 14, 8),
+    Enemy(Theme.Snow, EnemyType.Golem, "Crystal Golem", "01", 100, 125, 12, 14, 8),
+    Enemy(Theme.Snow, EnemyType.Knight, "Horned Knight", "01", 100, 125, 13, 14, 12),
+    Enemy(Theme.Snow, EnemyType.Dragon, "Elegant Dragon", "02", 100, 100, 12, 9, 5),
+    Enemy(Theme.Snow, EnemyType.Dragon, "Spikey Dragon", "04", 100, 100, 3, 7, 15),
+    Enemy(Theme.Snow, EnemyType.Demon, "Eye Demon", "03", 100, 100, 13, 11, 16),
+    Enemy(Theme.Snow, EnemyType.Goblin, "Grumpy Goblin", "02", 100, 125, 9, 14, 8),
+    Enemy(Theme.Snow, EnemyType.Golem, "Ice Golem", "02", 100, 75, 5, 6, 13),
+    Enemy(Theme.Snow, EnemyType.Insect, "Skilled Pinchers", "01", 100, 125, 13, 14, 13),
+    Enemy(Theme.Snow, EnemyType.Demon, "Spooky Nightmare", "04", 100, 125, 13, 18, 9),
+    Enemy(Theme.Snow, EnemyType.Reptile, "Silver Snake", "01", 100, 125, 10, 14, 9),
+    Enemy(Theme.Snow, EnemyType.Goblin, "Angry Goblin", "03", 125, 100, 15, 12, 8)
+]
+
+define SnowBosses = [
+    Enemy(Theme.Snow, EnemyType.Dragon, "Mystical Dragon", "", 200, 200, 11, 9, 5),
+    Enemy(Theme.Snow, EnemyType.Orc, "Frost Giant", "", 200, 200, 9, 13, 12)
+]
+
+define VolcanoEnemies = [
+    Enemy(Theme.Volcano, EnemyType.Undead, "Ash Zombie", "01", 100, 125, 12, 14, 9),
+    Enemy(Theme.Volcano, EnemyType.Knight, "Golden Knight", "01", 100, 125, 11, 15, 11),
+    Enemy(Theme.Volcano, EnemyType.Demon, "Grinning Demon", "01", 100, 100, 12, 9, 14),
+    Enemy(Theme.Volcano, EnemyType.Demon, "Spikey Demon", "02", 100, 125, 6, 15, 10),
+    Enemy(Theme.Volcano, EnemyType.Demon, "Rhino Demon", "05", 100, 125, 12, 14, 11),
+    Enemy(Theme.Volcano, EnemyType.Golem, "Mountain Golem", "01", 125, 100, 6, 8, 6),
+    Enemy(Theme.Volcano, EnemyType.Knight, "Golem Knight", "02", 100, 125, 11, 15, 13),
+    Enemy(Theme.Volcano, EnemyType.Knight, "Glowing Knight", "03", 125, 100, 14, 13, 5),
+    Enemy(Theme.Volcano, EnemyType.Orc, "Astute Madman", "01", 100, 100, 11, 8, 15),
+    Enemy(Theme.Volcano, EnemyType.Bird, "Magic Phoenix", "01", 100, 125, 12, 16, 9),
+    Enemy(Theme.Volcano, EnemyType.Insect, "Hungry Spider", "01", 100, 125, 9, 17, 13)
+]
+
+define VolcanoBosses = [
+    Enemy(Theme.Volcano, EnemyType.Demon, "Ember Giant", "", 200, 200, 6, 8, 10),
+    Enemy(Theme.Volcano, EnemyType.Dragon, "Flame Dragon", "", 200, 200, 10, 13, 12)
+]

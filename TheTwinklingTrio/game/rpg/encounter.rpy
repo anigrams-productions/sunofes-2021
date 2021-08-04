@@ -16,6 +16,7 @@ init python:
             # details we need to know and initialize about the encounter
             self.theme = theme
             self.players = players
+            self.script = "encounter_" + self.theme + "_start"
 
             # determine how long this particular encounter will last (minus mandatory scenarios)
             self.number_of_scenarios = self.get_number_of_scenarios()
@@ -43,7 +44,7 @@ init python:
             return renpy.random.randint(preferences.rpg_random_min_scenarios, preferences.rpg_random_max_scenarios)
 
         def get_active_players(self):
-            return filter(lambda player: player.is_active(), self.players.values())
+            return filter(lambda player: player.is_active(), self.players)
 
         def get_battle_frequency(self):
             # translate battle frequency preference into a number of scenarios
@@ -54,7 +55,7 @@ init python:
             elif preferences.rpg_option_battle_frequency == Frequency.High:
                 return .8
             else:
-                raise ValueError("Invalid battle frequency {preferences.rpg_option_battle_frequency} specified.")
+                raise ValueError("Invalid battle frequency " + preferences.rpg_option_battle_frequency + " specified.")
 
         def get_scenarios(self, battle_frequency):
             scenarios = []
@@ -95,14 +96,13 @@ init python:
             self.scenarios.remove(scenario)
 
         def get_next_player(self):
-            players_as_list = list(self.players.values())
-            current_index = players_as_list.index(self.current_player)
+            current_index = self.players.index(self.current_player)
             current_index += 1
 
             # if we reach the end of the list, start back at 0
             if current_index > (len(self.players) - 1):
                 current_index = 0
 
-            self.current_player = players_as_list[current_index]
+            self.current_player = self.players[current_index]
 
-            return self.current_player.character_type
+            return self.current_player

@@ -11,14 +11,6 @@ define rpg_nerdy = Character(preferences.rpg_char_nerdy_name, color="#827281")
 define rpg_sporty = Character(preferences.rpg_char_sporty_name, color="#e5914f")
 define rpg_perfect = Character(preferences.rpg_char_perfect_name, color="#e3848e")
 
-init python:
-    rpg_players = {
-        CharacterType.Nerdy: Hero(CharacterType.Nerdy),
-        CharacterType.Sporty: Hero(CharacterType.Sporty),
-        CharacterType.Perfect: Hero(CharacterType.Perfect)
-    }
-    rpg_current_player = CharacterType.Nerdy
-
 # The game starts here.
 
 label start:
@@ -39,9 +31,9 @@ label start:
 
     # These display lines of dialogue.
 
-    $ rpg_current_encounter = Encounter(Theme.Field, rpg_players, rpg_players[rpg_current_player])
+    $ game_state = GameState()
 
-    call expression "encounter_" + rpg_current_encounter.theme + "_start"
+    call expression game_state.current_encounter.script
 
     "We're back at the start label."
 

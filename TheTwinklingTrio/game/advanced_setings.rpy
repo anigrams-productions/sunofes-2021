@@ -14,7 +14,7 @@ default preferences.rpg_char_sporty_title = "Fairy Princess"
 
 default preferences.char_perfect_name = "Jane"
 default preferences.rpg_char_perfect_name = "Lustrea"
-default preferences.rpg_char_perfect_title = "Rainbow Witch"
+default preferences.rpg_char_perfect_title = "Moon Sorceress"
 
 default preferences.rpg_group_name = config.name
 default preferences.rpg_group_name_short = "T3"
