@@ -16,6 +16,8 @@ define AutoSelection = enum("On", "Others", "Off")
 define Frequency = enum("Low", "Normal", "High")
 define Difficulty = enum("Casual", "Easy", "Normal", "Hard", "Nightmare")
 
+define AttributeAllocation = enum("Novice", "Average", "Expert")
+
 ## Gameplay Enums
 define CharacterType = enum(Nerdy="nerdy", Sporty="sporty", Perfect="perfect")
 

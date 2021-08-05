@@ -1,36 +1,36 @@
 init python:
     class GameState:
         def __init__(self):
-            self.players = self.get_players()
-            self.current_player = self.players[0]
+            self.t3_player_nerdy = Hero(CharacterType.Nerdy)
+            self.t3_player_sporty = Hero(CharacterType.Sporty)
+            self.t3_player_perfect = Hero(CharacterType.Perfect)
 
-            self.encounters = self.get_encounters()
-            self.current_encounter = self.encounters[0]
+            self.t3_players = [self.t3_player_nerdy, self.t3_player_sporty, self.t3_player_perfect]
+            self.t3_current_player = self.t3_players[0]
 
-            self.current_scenario = None
+            self.t3_encounters = self.get_encounters()
+            self.t3_current_encounter = self.t3_encounters[0]
+
+            self.t3_current_scenario = None
             
             self.update_remaining_players()
 
-        def get_players(self):
-            character_types = [CharacterType.Nerdy, CharacterType.Sporty, CharacterType.Perfect]
-            characters = []
-
-            for character_type in character_types:
-                characters.append(Hero(character_type))
-
-            return characters
+            self.t3_attribute_points_to_allocate = preferences.t3_rpg_attribute_total_points
+            self.t3_attribute_novice_chosen = False
+            self.t3_attribute_average_chosen = False
+            self.t3_attribute_expert_chosen = False
 
         def get_encounters(self):
             encounter_types = [Theme.Field, Theme.Volcano, Theme.Desert, Theme.Snow, Theme.Graveyard]
             encounters = []
 
             for theme in encounter_types:
-                encounters.append(Encounter(theme, self.players, self.current_player))
+                encounters.append(Encounter(theme, self.t3_players, self.t3_current_player))
 
             return encounters
 
         def get_scenario_menu(self):
-            scenario_options = self.current_encounter.pick_random_scenarios()
+            scenario_options = self.t3_current_encounter.pick_random_scenarios()
             scenario_menu_options = []
 
             for option in scenario_options:
@@ -39,8 +39,35 @@ init python:
             narrator("Where should we go next?", interact=False)
             selected_scenario = renpy.display_menu(scenario_menu_options)
 
-            self.current_encounter.select_scenario(selected_scenario)
-            self.current_scenario = selected_scenario
+            self.t3_current_encounter.select_scenario(selected_scenario)
+            self.t3_current_scenario = selected_scenario
 
         def update_remaining_players(self):
-            self.remaining_players = self.current_encounter.get_active_players()
+            self.t3_remaining_players = self.t3_current_encounter.get_active_players()
+
+        def get_next_encounter(self):
+            current_index = self.t3_encounters.index(self.t3_current_encounter)
+            current_index += 1
+
+            # if we reach the end of the list, return nothing
+            if current_index > (len(self.t3_encounters) - 1):
+                return None
+
+            self.t3_current_encounter = self.t3_encounters[current_index]
+
+            return self.t3_current_encounter
+
+        def calculate_attribute_allocation(self, level, current_points = 0):
+            expected_points = 0
+            if level == AttributeAllocation.Novice:
+                expected_points = round(preferences.t3_rpg_attribute_total_points * 0.167)
+            elif level == AttributeAllocation.Average:
+                expected_points = round(preferences.t3_rpg_attribute_total_points * 0.333)
+            elif level == AttributeAllocation.Expert:
+                expected_points = round(preferences.t3_rpg_attribute_total_points * 0.5)
+
+            # if expected points is greater than the points remaining, go ahead and return the points remaining
+            if expected_points > (preferences.t3_rpg_attribute_total_points - current_points):
+                expected_points = preferences.t3_rpg_attribute_total_points - current_points
+
+            return expected_points

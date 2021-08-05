@@ -15,7 +15,7 @@ Each encounter has a unique theme, which includes a setting and story objective,
     * Act 1: Introduction
     * Goal: introduce the characters, their RPG personas, the game mechanics, the villain, the idea of throwing a fancy party to celebrate if they make it all the way to the end
     * RPG Objective: NPC 3, a training dummy animated by NPC 1 after they escaped from danger, asks you to clear the area of monsters and investigate where they're coming from and why they've suddenly appeared - the girls find that the monsters are being sent by the villain
-    * Real-life: girls were playing dodgeball in P.E. and Lisa got pummeled with dodgeballs that seemed to appear "out of nowhere"
+    * Real-life: Lisa introduces Jane and Christine to the game she wrote to play together with them
 * Since it's summer and it's super hot, the girls are inspired to do a volcano-themed encounter (with dragons)
     * bg_01.png (fiery mountains)
     * sunset closed.png

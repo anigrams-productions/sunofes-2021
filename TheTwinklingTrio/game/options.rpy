@@ -44,15 +44,20 @@ define gui.about = _p("""
 define build.name = "TheTwinklingTrio"
 
 
-## Disable rollback
+## Enable/disable rollback for the entire game.
 
 define config.rollback_enabled = False
 
 
-## Enable style inspector
-## TODO: Comment out before releasing the game
+## Enable/disable developer debug tools.
+#### Shift+O Console
+#### Shift+D Developer Menu
+#### Shift+R Reloading
+#### Shift+I Style Inspecting
+#### Shift+Y Style Dumping
 
 define config.developer = True
+define config.console = True
 
 
 ## Sounds and music ############################################################
@@ -134,7 +139,7 @@ define config.window_hide_transition = Dissolve(.2)
 ## Controls the default text speed. The default, 0, is infinite, while any other
 ## number is the number of characters per second to type out.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 30
 
 
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0

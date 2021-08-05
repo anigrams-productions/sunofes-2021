@@ -1,4 +1,4 @@
-label encounter_field_start:
+label t3_encounter_field_start:
 
     nerdy "I will now explain how to play the game. It all started on a dark, dreary night..."
 
@@ -8,16 +8,16 @@ label encounter_field_start:
 
     nerdy "Very well. It all started in a peaceful, fantastical field..."
 
-    call encounter_scenarios_play
+    call t3_encounter_scenarios_play
 
     return
 
-label encounter_field_success:
+label t3_encounter_field_success:
     "You won!"
 
     return
 
-label encounter_field_failure:
+label t3_encounter_field_failure:
     "You lost..."
 
     return

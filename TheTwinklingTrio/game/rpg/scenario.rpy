@@ -61,7 +61,7 @@ init python:
 
             random_enemy = renpy.random.choice(enemy_list)
 
-            return "scenario_" + random_enemy.theme + "_enemy_" + random_enemy.enemy_type
+            return "t3_scenario_" + random_enemy.theme + "_enemy_" + random_enemy.enemy_type
 
         def get_boss(self, boss = None):
             # get boss - if boss Enemy is supplied, return that one, otherwise choose random
@@ -81,40 +81,40 @@ init python:
 
             random_boss = boss or renpy.random.choice(boss_list)
 
-            return "scenario_" + random_boss.theme + "_boss_" + random_boss.enemy_type
+            return "t3_scenario_" + random_boss.theme + "_boss_" + random_boss.enemy_type
 
         def get_merchant(self):
             # return name of merchant script to run
-            return "scenario_" + self.theme + "_merchant"
+            return "t3_scenario_" + self.theme + "_merchant"
 
         def get_priest(self):
             # return name of priest script to run
-            return "scenario_" + self.theme + "_priest"
+            return "t3_scenario_" + self.theme + "_priest"
 
         def get_bard(self):
             # return name of bard script to run
-            return "scenario_" + self.theme + "_bard"
+            return "t3_scenario_" + self.theme + "_bard"
 
         def get_quest(self):
             # return name of quest giver script to run
-            return "scenario_" + self.theme + "_quest"
+            return "t3_scenario_" + self.theme + "_quest"
 
         def get_special(self):
             # return name of special NPC script to run
-            return "scenario_" + self.theme + "_special"
+            return "t3_scenario_" + self.theme + "_special"
 
         def get_campfire(self):
             # return name of campfire script to run
-            return "scenario_" + self.theme + "_campfire"
+            return "t3_scenario_" + self.theme + "_campfire"
 
         def get_treasure(self):
             # return name of treasure script to run
-            return "scenario_" + self.theme + "_treasure"
+            return "t3_scenario_" + self.theme + "_treasure"
 
         def get_puzzle(self):
             # return name of puzzle script to run
-            return "scenario_" + self.theme + "_puzzle"
+            return "t3_scenario_" + self.theme + "_puzzle"
 
         def get_trap(self):
             # return name of trap script to run
-            return "scenario_" + self.theme + "_trap"
+            return "t3_scenario_" + self.theme + "_trap"

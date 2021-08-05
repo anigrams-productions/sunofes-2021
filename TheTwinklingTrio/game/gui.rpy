@@ -65,7 +65,7 @@ define gui.name_text_font = "fonts/normal/Chilanka-Regular.ttf"
 define gui.interface_text_font = "fonts/normal/Chilanka-Regular.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 26
+define gui.text_size = 28
 
 ## The size of character names.
 define gui.name_text_size = 38

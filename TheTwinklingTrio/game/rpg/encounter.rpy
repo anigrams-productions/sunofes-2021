@@ -16,7 +16,7 @@ init python:
             # details we need to know and initialize about the encounter
             self.theme = theme
             self.players = players
-            self.script = "encounter_" + self.theme + "_start"
+            self.script = "t3_encounter_" + self.theme + "_start"
 
             # determine how long this particular encounter will last (minus mandatory scenarios)
             self.number_of_scenarios = self.get_number_of_scenarios()
@@ -41,21 +41,21 @@ init python:
 
         def get_number_of_scenarios(self):
             # TODO: Make sure we're using the correct random seed
-            return renpy.random.randint(preferences.rpg_random_min_scenarios, preferences.rpg_random_max_scenarios)
+            return renpy.random.randint(preferences.t3_rpg_random_min_scenarios, preferences.t3_rpg_random_max_scenarios)
 
         def get_active_players(self):
             return filter(lambda player: player.is_active(), self.players)
 
         def get_battle_frequency(self):
             # translate battle frequency preference into a number of scenarios
-            if preferences.rpg_option_battle_frequency == Frequency.Low:
+            if preferences.t3_rpg_option_battle_frequency == Frequency.Low:
                 return .3
-            elif preferences.rpg_option_battle_frequency == Frequency.Normal:
+            elif preferences.t3_rpg_option_battle_frequency == Frequency.Normal:
                 return .5
-            elif preferences.rpg_option_battle_frequency == Frequency.High:
+            elif preferences.t3_rpg_option_battle_frequency == Frequency.High:
                 return .8
             else:
-                raise ValueError("Invalid battle frequency " + preferences.rpg_option_battle_frequency + " specified.")
+                raise ValueError("Invalid battle frequency " + preferences.t3_rpg_option_battle_frequency + " specified.")
 
         def get_scenarios(self, battle_frequency):
             scenarios = []
@@ -79,7 +79,7 @@ init python:
             return scenarios
 
         def pick_random_scenarios(self):
-            number_of_samples = preferences.rpg_number_scenario_options
+            number_of_samples = preferences.t3_rpg_number_scenario_options
             number_of_scenarios = len(self.scenarios)
 
             # sanity check: make sure we only get as many as still exist
