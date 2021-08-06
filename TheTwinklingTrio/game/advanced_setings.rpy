@@ -84,10 +84,13 @@ default preferences.t3_rpg_attribute_restore_money = False
 ## GAMEPLAY - RANDOMIZATION
 #### min = minimum
 #### max = maximum
-default preferences.t3_rpg_random_strength_weakness = False
-default preferences.t3_rpg_random_attribute_allocation = False
+# TODO: implement setting random seed
+# default preferences.t3_rpg_random_seed = None
 
-default preferences.t3_rpg_random_seed = None
+# TODO: implement random strengths and weaknesses
+# default preferences.t3_rpg_random_strength_weakness = False
+# TODO: implement random attribute allocation
+# default preferences.t3_rpg_random_attribute_allocation = False
 
 default preferences.t3_rpg_random_min_scenarios = 5
 default preferences.t3_rpg_random_max_scenarios = 7

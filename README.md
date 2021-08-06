@@ -20,7 +20,7 @@ Planning
 - [x] Determine story and scenarios ("cards") available for each encounter
 
 Writing
-- [ ] Field - Intro
+- [x] Field - Intro
 - [ ] Field - Scenarios
 - [ ] Field - Endings
 
@@ -58,3 +58,4 @@ Extra (after the Game Jam)
 - [ ] RPG dialogue GUI
 - [ ] RPG shop GUI
 - [ ] RPG scenario selection GUI
+- [ ] New Game +

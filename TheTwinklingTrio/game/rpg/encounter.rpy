@@ -3,12 +3,12 @@ init python:
 
     NonCombatScenarioTypes = [
         ScenarioType.Merchant,
-        ScenarioType.Priest,
-        ScenarioType.Bard,
+        # ScenarioType.Priest,
+        # ScenarioType.Bard,
         ScenarioType.Campfire,
-        ScenarioType.Treasure,
-        ScenarioType.Puzzle,
-        ScenarioType.Trap
+        ScenarioType.Treasure
+        # ScenarioType.Puzzle,
+        # ScenarioType.Trap
     ]
 
     class Encounter:
@@ -82,9 +82,17 @@ init python:
             number_of_samples = preferences.t3_rpg_number_scenario_options
             number_of_scenarios = len(self.scenarios)
 
-            # sanity check: make sure we only get as many as still exist
+            # if we don't have enough scenarios, generate some more
             if number_of_samples > number_of_scenarios:
-                number_of_samples = number_of_scenarios
+                possible_scenario_types = []
+                scenarios_to_generate = number_of_samples - number_of_scenarios
+
+                possible_scenario_types.extend(NonCombatScenarioTypes]
+                possible_scenario_types.append(ScenarioType.Enemy)
+
+                for n in range(scenarios_to_generate):
+                    scenario_type = renpy.random.choice(possible_scenario_types)
+                    self.scenarios.append(Scenario(self.theme, scenario_type))
 
             return renpy.random.sample(self.scenarios, number_of_samples)
 

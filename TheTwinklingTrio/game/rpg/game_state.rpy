@@ -16,9 +16,6 @@ init python:
             self.update_remaining_players()
 
             self.t3_attribute_points_to_allocate = preferences.t3_rpg_attribute_total_points
-            self.t3_attribute_novice_chosen = False
-            self.t3_attribute_average_chosen = False
-            self.t3_attribute_expert_chosen = False
 
         def get_encounters(self):
             encounter_types = [Theme.Field, Theme.Volcano, Theme.Desert, Theme.Snow, Theme.Graveyard]
