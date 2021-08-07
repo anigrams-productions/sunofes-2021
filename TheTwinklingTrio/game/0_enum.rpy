@@ -21,6 +21,8 @@ define AttributeAllocation = enum("Novice", "Average", "Expert")
 ## Gameplay Enums
 define CharacterType = enum(Nerdy="nerdy", Sporty="sporty", Perfect="perfect")
 
+define AttributeType = enum(Style="style", Magic="magic", Wisdom="wisdom")
+
 define Theme = enum(
     Field="field",
     Volcano="volcano",

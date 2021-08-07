@@ -7,12 +7,21 @@ init python:
             if self.character_type == CharacterType.Nerdy:
                 name = preferences.t3_rpg_char_nerdy_name
                 self.title = preferences.t3_rpg_char_nerdy_title
+                # TODO: allow for randomizing strength and weakness
+                strength = AttributeType.Wisdom
+                weakness = AttributeType.Style
             elif self.character_type == CharacterType.Sporty:
                 name = preferences.t3_rpg_char_sporty_name
                 self.title = preferences.t3_rpg_char_sporty_title
+                # TODO: allow for randomizing strength and weakness
+                strength = AttributeType.Style
+                weakness = AttributeType.Wisdom
             elif self.character_type == CharacterType.Perfect:
                 name = preferences.t3_rpg_char_perfect_name
                 self.title = preferences.t3_rpg_char_perfect_title
+                # TODO: allow for randomizing strength and weakness
+                strength = AttributeType.Magic
+                weakness = None
             else:
                 raise ValueError("Invalid character type " + character_type + " specified.")
 
@@ -49,7 +58,7 @@ init python:
             self.traps_encountered = []
             self.traps_defeated = []
 
-            Entity.__init__(self, character_type, name, icon, health, mana, money, style, magic, wisdom)
+            Entity.__init__(self, character_type, name, icon, health, mana, money, style, magic, wisdom, strength, weakness)
 
         def can_level_up(self):
             return self.is_active() and (self.experience_points >= self.experience_needed)
@@ -71,3 +80,18 @@ init python:
         def reset_money(self):
             if preferences.t3_rpg_attribute_restore_money:
                 self.money = preferences.t3_rpg_attribute_starting_money
+
+        def increase_style(self, amount):
+            self.style += amount
+            calculate_modified_attributes()
+
+        def increase_magic(self, amount):
+            self.magic += amount
+            calculate_modified_attributes()
+
+        def increase_wisdom(self, amount):
+            self.wisdom += amount
+            calculate_modified_attributes()
+
+        def increase_experience(self, amount):
+            self.expected_points += amount

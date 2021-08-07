@@ -12,6 +12,8 @@ init python:
             self.t3_current_encounter = self.t3_encounters[0]
 
             self.t3_current_scenario = None
+            self.t3_current_action = None
+            self.t3_current_action_round = 0
             
             self.update_remaining_players()
 
@@ -43,6 +45,22 @@ init python:
 
             self.t3_current_encounter.select_scenario(selected_scenario)
             self.t3_current_scenario = selected_scenario
+
+        def get_action_menu(self, actions):
+            action_options = filter(lambda action: action.character_type == self.t3_current_player.character_type, actions)
+            action_menu_options = []
+
+            for option in action_options:
+                option_as_action = Action(self.t3_current_scenario.script, self.t3_current_player, option.action_type, self.t3_current_action_round, self.t3_total_dice_roll, option.mana_cost, option.money_cost, option.health_cost)
+                
+                # only add it to the menu if the player can actually do it
+                if option_as_action.is_available():
+                    action_menu_options.append((option.menu_label, option_as_action))
+
+            narrator("What should we do?", interact=False)
+            selected_action = renpy.display_menu(action_menu_options)
+
+            self.t3_current_action = selected_action
 
         def update_remaining_players(self):
             self.t3_remaining_players = self.t3_current_encounter.get_active_players()

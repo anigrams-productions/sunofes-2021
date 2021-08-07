@@ -1,6 +1,7 @@
 label t3_encounter_scenarios_play:
     ## Start by meeting the quest giver
     # "This is the quest scenario. Current player is [game_state.t3_current_player.name]."
+    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
     call expression game_state.t3_current_encounter.scenario_quest.script
     call t3_encounter_scenario_end
 
@@ -15,11 +16,13 @@ label t3_encounter_scenarios_play:
 
     ## Meet the boss
     # "This is the boss scenario. Current player is [game_state.t3_current_player.name]."
+    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_boss
     call expression game_state.t3_current_encounter.scenario_boss.script
     call t3_encounter_scenario_end
 
     ## Finally, reach the objective
     # "This is the final scenario. Current player is [game_state.t3_current_player.name]."
+    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_special
     call expression game_state.t3_current_encounter.scenario_special.script
     call t3_encounter_scenario_end
         

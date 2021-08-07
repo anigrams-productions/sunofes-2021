@@ -11,10 +11,24 @@ define rpg_nerdy = Character(preferences.t3_rpg_char_nerdy_name, color="#827281"
 define rpg_sporty = Character(preferences.t3_rpg_char_sporty_name, color="#e5914f")
 define rpg_perfect = Character(preferences.t3_rpg_char_perfect_name, color="#e3848e")
 
+# get capitalized versions of pronouns because Ren'Py can't handle .capitalize() in a say block
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
+define t3_pronoun_nerdy_obj_cap = preferences.t3_pronoun_nerdy_obj.capitalize()
+define t3_pronoun_nerdy_pos_cap = preferences.t3_pronoun_nerdy_pos.capitalize()
+define t3_pronoun_nerdy_poss_cap = preferences.t3_pronoun_nerdy_poss.capitalize()
+define t3_pronoun_nerdy_ref_cap = preferences.t3_pronoun_nerdy_ref.capitalize()
+
 define t3_rpg_pronoun_nerdy_sub_cap = preferences.t3_rpg_pronoun_nerdy_sub.capitalize()
+define t3_rpg_pronoun_nerdy_obj_cap = preferences.t3_rpg_pronoun_nerdy_obj.capitalize()
 define t3_rpg_pronoun_nerdy_pos_cap = preferences.t3_rpg_pronoun_nerdy_pos.capitalize()
+define t3_rpg_pronoun_nerdy_poss_cap = preferences.t3_rpg_pronoun_nerdy_poss.capitalize()
+define t3_rpg_pronoun_nerdy_ref_cap = preferences.t3_rpg_pronoun_nerdy_ref.capitalize()
+
 define t3_rpg_pronoun_perfect_sub_cap = preferences.t3_rpg_pronoun_perfect_sub.capitalize()
+define t3_rpg_pronoun_perfect_obj_cap = preferences.t3_rpg_pronoun_perfect_obj.capitalize()
+define t3_rpg_pronoun_perfect_pos_cap = preferences.t3_rpg_pronoun_perfect_pos.capitalize()
+define t3_rpg_pronoun_perfect_poss_cap = preferences.t3_rpg_pronoun_perfect_poss.capitalize()
+define t3_rpg_pronoun_perfect_ref_cap = preferences.t3_rpg_pronoun_perfect_ref.capitalize()
 
 image dice_1 = ConditionSwitch(
     "game_state.t3_dice_roll_1 == 1", "dice 1",
@@ -71,16 +85,17 @@ label start:
     $ game_state = GameState()
 
 label t3_introduction:
+    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
     jump t3_encounter_field_start
 
     scene bg sunny
 
-    pause 1.0
+    pause 1.5
 
     sporty "Ugh... so hot..."
     sporty "With that sun, you'd never believe summer's almost over."
 
-    pause 1.0
+    pause 1.5
 
     perfect "Is this it, [preferences.t3_char_nerdy_name]? The game you wanted to show us?"
 
@@ -181,7 +196,9 @@ label t3_introduction_sporty_character_creation:
     $ game_state.t3_attribute_average_chosen = False
     $ game_state.t3_attribute_expert_chosen = False
 
-    show sporty casual 1
+    show nerdy casual 1 at topleft
+    show sporty casual 1 at top
+    show perfect casual 1 at topright
 
     sporty "Let's see..."
     sporty "I'll be... um... wait, I know! I'll be [preferences.t3_rpg_char_sporty_name]. That's a cool name, right?"
@@ -397,7 +414,9 @@ label t3_introduction_sporty_character_creation:
 label t3_introduction_perfect_character_creation:
     $ game_state.t3_attribute_points_to_allocate = preferences.t3_rpg_attribute_total_points
 
-    show sporty casual 1
+    show nerdy casual 1 at topleft
+    show sporty casual 1 at top
+    show perfect casual 1 at topright
 
     sporty "Now it's your turn, right, [preferences.t3_char_perfect_name]?"
 
@@ -609,7 +628,9 @@ label t3_introduction_perfect_character_creation:
 label t3_introduction_nerdy_character_creation:
     $ game_state.t3_attribute_points_to_allocate = preferences.t3_rpg_attribute_total_points
 
-    show perfect casual 1
+    show nerdy casual 8 at topleft
+    show sporty casual 24 at top
+    show perfect casual 1 at topright
 
     perfect "Not so fast. What about your character, [preferences.t3_char_nerdy_name]?"
 

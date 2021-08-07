@@ -7,6 +7,7 @@ init python:
             # details we need to know and initialize about the scenario
             self.theme = theme
             self.scenario_type = scenario_type
+            self.keep_going = True
 
             if self.scenario_type == ScenarioType.Enemy:
                 self.script = self.get_enemy()

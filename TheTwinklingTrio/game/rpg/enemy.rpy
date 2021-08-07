@@ -10,7 +10,7 @@ init python:
             # TODO: make the max and min configurable
             money = renpy.random.randint(100, 1000)
 
-            Entity.__init__(self, enemy_type, name, icon, health, mana, money, style, magic, wisdom)
+            Entity.__init__(self, enemy_type, name, icon, health, mana, money, style, magic, wisdom, None, None)
 
         def get_icon(self):
             return "enemy {self.theme} {self.enemy_type}_{self.id}"
