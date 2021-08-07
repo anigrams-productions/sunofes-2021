@@ -17,6 +17,11 @@ init python:
 
             self.t3_attribute_points_to_allocate = preferences.t3_rpg_attribute_total_points
 
+            self.t3_dice_roll_1 = 1
+            self.t3_dice_roll_2 = 1
+            self.t3_dice_roll_3 = 1
+            self.t3_total_dice_roll = 0
+
         def get_encounters(self):
             encounter_types = [Theme.Field, Theme.Volcano, Theme.Desert, Theme.Snow, Theme.Graveyard]
             encounters = []
@@ -68,3 +73,10 @@ init python:
                 expected_points = preferences.t3_rpg_attribute_total_points - current_points
 
             return expected_points
+
+        def roll_dice(self):
+            self.t3_dice_roll_1 = renpy.random.randint(1, 6)
+            self.t3_dice_roll_2 = renpy.random.randint(1, 6)
+            self.t3_dice_roll_3 = renpy.random.randint(1, 6)
+
+            self.t3_total_dice_roll = self.t3_dice_roll_1 + self.t3_dice_roll_2 + self.t3_dice_roll_3

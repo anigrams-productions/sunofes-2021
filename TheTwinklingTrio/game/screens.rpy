@@ -1141,6 +1141,8 @@ screen confirm(message, yes_action, no_action):
     ## Ensure other screens do not get input while this screen is displayed.
     modal True
 
+    layer "confirm"
+
     zorder 200
 
     style_prefix "confirm"

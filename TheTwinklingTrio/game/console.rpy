@@ -146,6 +146,11 @@ init -1500 python in _console:
 
         return "\n".join(all_labels)
 
+    @public_command(_("list_layers: List the available graphics layers in their original order"))
+    def list_layers(l):
+        all_layers = renpy.python.py_eval("config.layers")
+        return "\n".join(all_layers)
+
     @public_command(_("set_variable <variable> <value>: Set the designated variable to the designated value"))
     def set_variable(l):
         parameters = l.rest().strip().split()

@@ -1,12 +1,20 @@
 label t3_encounter_field_start:
 
-    nerdy "I will now explain how to play the game. It all started on a dark, dreary night..."
+    # scene black
 
-    sporty "Wait, that's too dull. Let's do something bright and colorful!"
+    # nerdy "Word had spread of a terrible curse afflicting humans and turning them into fearsome monsters."
+    # nerdy "Seeking answers, the [preferences.t3_rpg_char_nerdy_title] requested aid from the non-human races."
+    # nerdy "The fairies sent a royal ambassador, [preferences.t3_rpg_char_sporty_name] the [preferences.t3_rpg_char_sporty_title], to accompany the [preferences.t3_rpg_char_nerdy_title]."
 
-    perfect "How about a nice, green field? I've heard of games starting with peaceful scenery."
+    # sporty "Hey, that's me!"
 
-    nerdy "Very well. It all started in a peaceful, fantastical field..."
+    # nerdy "And the sorcerers sent the most powerful among them, [preferences.t3_rpg_char_perfect_name] the [preferences.t3_rpg_char_perfect_title], to lend [preferences.t3_rpg_pronoun_perfect_pos] strength."
+
+    # perfect "Of course, happy to help."
+
+    scene bg rpg field
+
+    # nerdy "The three of them traveled to a lush, fantastical meadow, where the first humans were rumored to have disappeared."
 
     call t3_encounter_scenarios_play
 

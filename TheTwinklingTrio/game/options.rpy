@@ -226,3 +226,14 @@ init python:
 ## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+## Other configuration #######################
+
+init python:
+    ## Insert new layer for dice
+    if 'dice' not in config.layers:
+        config.layers.insert(1, 'dice')
+
+    ## Confirm quit should always be the top-most layer
+    if 'confirm' not in config.layers:
+        config.layers.append('confirm')

@@ -87,7 +87,7 @@ init python:
                 possible_scenario_types = []
                 scenarios_to_generate = number_of_samples - number_of_scenarios
 
-                possible_scenario_types.extend(NonCombatScenarioTypes]
+                possible_scenario_types.extend(NonCombatScenarioTypes)
                 possible_scenario_types.append(ScenarioType.Enemy)
 
                 for n in range(scenarios_to_generate):

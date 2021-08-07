@@ -42,7 +42,7 @@ Writing
 
 Programming
 - [x] Outer Gameplay Loop (Encounter)
-- [ ] Inner Gameplay Loop (Scenario)
+- [x] Inner Gameplay Loop (Scenario)
 - [ ] Add Music
 
 Extra Programming (if there's time)

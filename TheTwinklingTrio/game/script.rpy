@@ -12,8 +12,57 @@ define rpg_sporty = Character(preferences.t3_rpg_char_sporty_name, color="#e5914
 define rpg_perfect = Character(preferences.t3_rpg_char_perfect_name, color="#e3848e")
 
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
+define t3_rpg_pronoun_nerdy_sub_cap = preferences.t3_rpg_pronoun_nerdy_sub.capitalize()
 define t3_rpg_pronoun_nerdy_pos_cap = preferences.t3_rpg_pronoun_nerdy_pos.capitalize()
 define t3_rpg_pronoun_perfect_sub_cap = preferences.t3_rpg_pronoun_perfect_sub.capitalize()
+
+image dice_1 = ConditionSwitch(
+    "game_state.t3_dice_roll_1 == 1", "dice 1",
+    "game_state.t3_dice_roll_1 == 2", "dice 2",
+    "game_state.t3_dice_roll_1 == 3", "dice 3",
+    "game_state.t3_dice_roll_1 == 4", "dice 4",
+    "game_state.t3_dice_roll_1 == 5", "dice 5",
+    "game_state.t3_dice_roll_1 == 6", "dice 6"
+)
+
+image dice_2 = ConditionSwitch(
+    "game_state.t3_dice_roll_2 == 1", "dice 1",
+    "game_state.t3_dice_roll_2 == 2", "dice 2",
+    "game_state.t3_dice_roll_2 == 3", "dice 3",
+    "game_state.t3_dice_roll_2 == 4", "dice 4",
+    "game_state.t3_dice_roll_2 == 5", "dice 5",
+    "game_state.t3_dice_roll_2 == 6", "dice 6"
+)
+
+image dice_3 = ConditionSwitch(
+    "game_state.t3_dice_roll_3 == 1", "dice 1",
+    "game_state.t3_dice_roll_3 == 2", "dice 2",
+    "game_state.t3_dice_roll_3 == 3", "dice 3",
+    "game_state.t3_dice_roll_3 == 4", "dice 4",
+    "game_state.t3_dice_roll_3 == 5", "dice 5",
+    "game_state.t3_dice_roll_3 == 6", "dice 6"
+)
+
+init:
+    transform centerleft:
+        xalign 0.1
+        yalign 0.5
+
+    transform centerright:
+        xalign 0.9
+        yalign 0.5
+
+    transform diceleft:
+        xalign 0.4
+        yalign 0.3
+
+    transform dicecenter:
+        xalign 0.5
+        yalign 0.3
+
+    transform diceright:
+        xalign 0.6
+        yalign 0.3
 
 # The game starts here.
 
@@ -22,29 +71,31 @@ label start:
     $ game_state = GameState()
 
 label t3_introduction:
+    jump t3_encounter_field_start
+
     scene bg sunny
 
-    pause(1)
+    pause 1.0
 
     sporty "Ugh... so hot..."
     sporty "With that sun, you'd never believe summer's almost over."
 
-    pause(1)
+    pause 1.0
 
     perfect "Is this it, [preferences.t3_char_nerdy_name]? The game you wanted to show us?"
 
     scene bg room day open
 
-    show nerdy casual 8 at topleft
+    show nerdy casual 8 at topleft with dissolve
 
     nerdy "Yes. I wrote it so we can play together."
 
-    show sporty casual 49 at top
+    show sporty casual 49 at top with dissolve
 
     sporty "So cool!"
     sporty "I can't wait to find out what it's about."
 
-    show perfect casual 3 at topright
+    show perfect casual 3 at topright with dissolve
 
     perfect "Indeed."
     perfect "It's really impressive you were able to pull everything together so quickly. That's our [preferences.t3_char_nerdy_name] for you."
@@ -732,7 +783,7 @@ label t3_introduction_nerdy_character_creation:
 
     show sporty casual 22
 
-    sporty "Finally! Let's get this show on the road already."
+    sporty "Finally! I'm ready to kick the crap out of that [preferences.t3_rpg_char_villain_title]."
 
     show perfect casual 3
 
@@ -740,7 +791,7 @@ label t3_introduction_nerdy_character_creation:
 
     show nerdy casual 8
 
-    nerdy "Okay, let's begin the first encounter."
+    nerdy "Okay, let's begin."
 
 label t3_start_game:
     # Start the RPG portion of the game
