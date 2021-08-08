@@ -128,9 +128,9 @@ init python:
             exp = 0
 
             if success:
-                exp = renpy.random.randint(prefereces.t3_rpg_random_min_exp_success, prefereces.t3_rpg_random_max_exp_success)
+                exp = renpy.random.randint(preferences.t3_rpg_random_min_exp_success, preferences.t3_rpg_random_max_exp_success)
             else:
-                exp = renpy.random.randint(prefereces.t3_rpg_random_min_exp_failure, prefereces.t3_rpg_random_max_exp_failure)
+                exp = renpy.random.randint(preferences.t3_rpg_random_min_exp_failure, preferences.t3_rpg_random_max_exp_failure)
 
             self.experience_points += exp
 

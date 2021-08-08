@@ -98,10 +98,13 @@ default preferences.t3_rpg_random_max_scenarios = 7
 
 default preferences.t3_rpg_number_scenario_options = 3
 
-default prefereces.t3_rpg_random_max_exp_success = 100
-default prefereces.t3_rpg_random_min_exp_success = 51
-default prefereces.t3_rpg_random_max_exp_failure = 50
-default prefereces.t3_rpg_random_min_exp_failure = 1
+default preferences.t3_rpg_random_max_exp_success = 100
+default preferences.t3_rpg_random_min_exp_success = 51
+default preferences.t3_rpg_random_max_exp_failure = 50
+default preferences.t3_rpg_random_min_exp_failure = 1
+
+default preferences.t3_rpg_random_max_money_reward = 1000
+default preferences.t3_rpg_random_min_money_reward = 100
 
 ## GAMEPLAY - AUTOMATION
 #### auto = automatic
@@ -109,7 +112,14 @@ default prefereces.t3_rpg_random_min_exp_failure = 1
 # default preferences.t3_rpg_auto_scenarios = AutoSelection.Others
 # default preferences.t3_rpg_auto_actions = AutoSelection.Others
 
-## GAMEPLAY - DIFFICULTY AND OTHER OPTIONS
+## GAMEPLAY - DIFFICULTY
 default preferences.t3_rpg_option_battle_frequency = Frequency.Normal
 default preferences.t3_rpg_option_battle_difficulty = Difficulty.Normal
 default preferences.t3_rpg_option_puzzle_difficulty = Difficulty.Normal
+
+## GAMEPLAY - SHOP
+#### amt = amount
+default preferences.t3_rpg_shop_health_potion_cost = 50
+default preferences.t3_rpg_shop_health_potion_amt = 50
+default preferences.t3_rpg_shop_mana_potion_cost = 50
+default preferences.t3_rpg_shop_mana_potion_amt = 50

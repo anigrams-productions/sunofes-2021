@@ -2,7 +2,7 @@ init python:
     import math
 
     NonCombatScenarioTypes = [
-        # ScenarioType.Merchant,
+        ScenarioType.Merchant,
         # ScenarioType.Priest,
         # ScenarioType.Bard,
         ScenarioType.Campfire,
@@ -104,12 +104,37 @@ init python:
             self.scenarios.remove(scenario)
 
         def get_next_player(self):
-            current_index = self.players.index(self.current_player)
-            current_index += 1
+            local_current_player = self.current_player
+            current_iteration = 0
+            
+            while True:
+                # to prevent an infinite loop, only try this for as many players as there are
+                if current_iteration >= len(self.players):
+                    break
 
-            # if we reach the end of the list, start back at 0
-            if current_index > (len(self.players) - 1):
-                current_index = 0
+                current_index = self.players.index(local_current_player)
+                current_index += 1
+
+                # if we reach the end of the list, start back at 0
+                if current_index > (len(self.players) - 1):
+                    current_index = 0
+
+                local_current_player = self.players[current_index]
+                if local_current_player.is_active():
+                    self.current_player = self.players[current_index]
+                    break
+
+                current_iteration += 1
+
+            return self.current_player
+
+        def get_previous_player(self):
+            current_index = self.players.index(self.current_player)
+            current_index -= 1
+
+            # if we reach the end of the list, start back at the end of the list
+            if current_index < 0:
+                current_index = len(self.players) - 1
 
             self.current_player = self.players[current_index]
 

@@ -65,7 +65,7 @@ init python:
 
             self.current_entity = random_enemy
 
-            return "t3_scenario_" + random_enemy.theme + "_enemy_" + random_enemy.enemy_type
+            return "t3_scenario_" + random_enemy.theme + "_enemy_" + random_enemy.enemy_type + "_" + random_enemy.id
 
         def get_boss(self, boss = None):
             # get boss - if boss Enemy is supplied, return that one, otherwise choose random

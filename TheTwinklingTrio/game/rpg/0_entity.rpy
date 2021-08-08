@@ -5,7 +5,9 @@ init python:
             self.name = name
             self.icon = icon
             self.health = health
+            self.max_health = health
             self.mana = mana
+            self.max_mana = mana
             self.money = money
             self.style = style
             self.magic = magic
@@ -102,7 +104,10 @@ init python:
             if self.god_mode:
                 return
 
-            self.health += amount
+            if (self.health + amount) > self.max_health:
+                self.health = self.max_health
+            else:
+                self.health += amount
 
             # can't have negative health
             if self.health < 0:
@@ -112,8 +117,12 @@ init python:
             if self.god_mode:
                 return
 
-            self.mana += amount
+            if (self.mana + amount) > self.max_mana:
+                self.mana = self.max_mana
+            else:
+                self.mana += amount
 
+            # can't have negative mana
             if self.mana < 0:
                 self.mana = 0
 

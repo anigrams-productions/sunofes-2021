@@ -37,7 +37,7 @@ label t3_scenario_player_action_select:
             elif game_state.t3_current_player.character_type == CharacterType.Perfect:
                 $ rpg_perfect(game_state.t3_current_player.get_action_start_phrase())
 
-            nerdy "[game_state.t3_current_player.name] has [game_state.t3_current_player.health] Health, [game_state.t3_current_player.mana] Mana, and [game_state.t3_current_player.money] Money remaining."
+            "[game_state.t3_current_player.name] has [game_state.t3_current_player.health] Health, [game_state.t3_current_player.mana] Mana, and [game_state.t3_current_player.money] Money remaining."
 
             # TODO: Implement ability to enable automatic action selection
             $ game_state.get_action_menu(current_action_menu)
@@ -46,31 +46,33 @@ label t3_scenario_player_action_select:
 
             $ game_state.t3_current_action.attribute_points_required = game_state.t3_total_dice_roll
 
-            nerdy "[game_state.t3_current_player.name] rolled [game_state.t3_total_dice_roll]."
+            "[game_state.t3_current_player.name] rolled [game_state.t3_total_dice_roll]."
 
             $ current_attribute_amount = getattr(game_state.t3_current_player, game_state.t3_current_action.action_type)
-            nerdy "[game_state.t3_current_player.name] has [current_attribute_amount] [game_state.t3_current_action.action_type]."
+            "[game_state.t3_current_player.name] has [current_attribute_amount] [game_state.t3_current_action.action_type]."
 
             if game_state.t3_current_player.strength == game_state.t3_current_action.action_type:
                 $ current_attribute_amount += 1
-                nerdy "A +1 Strength bonus is applied, increasing [game_state.t3_current_player.name]'s [game_state.t3_current_action.action_type] to [current_attribute_amount]."
+                "A +1 Strength bonus is applied, increasing [game_state.t3_current_player.name]'s [game_state.t3_current_action.action_type] to [current_attribute_amount]."
 
             if game_state.t3_current_player.weakness == game_state.t3_current_action.action_type:
                 $ current_attribute_amount -= 1
-                nerdy "A -1 Weakness pernalty is applied, decreasing [game_state.t3_current_player.name]'s [game_state.t3_current_action.action_type] to [current_attribute_amount]."
+                "A -1 Weakness pernalty is applied, decreasing [game_state.t3_current_player.name]'s [game_state.t3_current_action.action_type] to [current_attribute_amount]."
 
             $ game_state.t3_action_successful = game_state.t3_current_action.is_success()
 
             if game_state.t3_action_successful:
-                nerdy "The action was successful."
+                "The check was successful."
             else:
-                nerdy "The action was not successful."
+                "The check was not successful."
+
+            call t3_scenario_hide_dice_roll
 
             call expression game_state.t3_current_action.return_action_result()
 
             $ experience_gained = game_state.t3_current_player.gain_experience(game_state.t3_action_successful)
 
-            nerdy "[game_state.t3_current_player.name] gained [experience_gained] experience points."
+            "[game_state.t3_current_player.name] gained [experience_gained] experience points."
 
             $ game_state.t3_current_player = game_state.t3_current_encounter.get_next_player()
 
