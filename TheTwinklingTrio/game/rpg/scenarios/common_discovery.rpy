@@ -16,7 +16,7 @@ label t3_scenario_campfire:
             $ game_state.t3_current_player.campfires_used.append(game_state.t3_current_scenario)
             $ party_member_count = 0
 
-            while party_member_count <= len(game_state.t3_remaining_players):
+            while party_member_count < len(game_state.t3_remaining_players):
                 $ game_state.t3_remaining_players[party_member_count].reset_health()
                 $ game_state.t3_remaining_players[party_member_count].reset_mana()
                 $ party_member_count += 1

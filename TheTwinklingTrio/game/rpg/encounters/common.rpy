@@ -37,6 +37,8 @@ label t3_encounter_scenario_select:
     return
 
 label t3_encounter_scenario_end:
+    hide other_icon
+
     ## Check if anyone's still alive
     $ game_state.update_remaining_players()
 
