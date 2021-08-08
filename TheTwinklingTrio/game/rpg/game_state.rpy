@@ -14,6 +14,8 @@ init python:
             self.t3_current_scenario = None
             self.t3_current_action = None
             self.t3_current_action_round = 0
+
+            self.t3_current_speaker = None
             
             self.update_remaining_players()
 
@@ -23,6 +25,8 @@ init python:
             self.t3_dice_roll_2 = 1
             self.t3_dice_roll_3 = 1
             self.t3_total_dice_roll = 0
+
+            self.t3_experience_gained = 0
 
         def get_encounters(self):
             encounter_types = [Theme.Field, Theme.Volcano, Theme.Desert, Theme.Snow, Theme.Graveyard]

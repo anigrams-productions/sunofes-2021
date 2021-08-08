@@ -2,7 +2,7 @@ label t3_encounter_field_start:
 
     # scene black
 
-    # TODO: show title screen
+    # TODO: show chapter title screen
 
     # nerdy "Word had spread of a terrible curse afflicting humans and turning them into fearsome monsters."
     # nerdy "Seeking answers, the [preferences.t3_rpg_char_nerdy_title] requested aid from the non-human races."

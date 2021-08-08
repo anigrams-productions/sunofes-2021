@@ -2,7 +2,7 @@ init python:
     import math
 
     NonCombatScenarioTypes = [
-        ScenarioType.Merchant,
+        # ScenarioType.Merchant,
         # ScenarioType.Priest,
         # ScenarioType.Bard,
         ScenarioType.Campfire,

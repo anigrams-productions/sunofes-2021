@@ -8,6 +8,7 @@ init python:
             self.theme = theme
             self.scenario_type = scenario_type
             self.keep_going = True
+            self.current_entity = None
 
             if self.scenario_type == ScenarioType.Enemy:
                 self.script = self.get_enemy()
@@ -32,7 +33,7 @@ init python:
                 self.menu_label = warning_label
             elif self.scenario_type == ScenarioType.Campfire:
                 self.script = self.get_campfire()
-                self.menu_label = ScenarioType.Campfire.capitalize()
+                self.menu_label = discovery_label
             elif self.scenario_type == ScenarioType.Treasure:
                 self.script = self.get_treasure()
                 self.menu_label = discovery_label
@@ -62,6 +63,8 @@ init python:
 
             random_enemy = renpy.random.choice(enemy_list)
 
+            self.current_entity = random_enemy
+
             return "t3_scenario_" + random_enemy.theme + "_enemy_" + random_enemy.enemy_type
 
         def get_boss(self, boss = None):
@@ -82,25 +85,37 @@ init python:
 
             random_boss = boss or renpy.random.choice(boss_list)
 
+            self.current_entity = random_boss
+
             return "t3_scenario_" + random_boss.theme + "_boss_" + random_boss.enemy_type
 
         def get_merchant(self):
+            filtered_npcs = filter(lambda npc: npc.theme == self.theme, MerchantNpcs)
+            self.current_entity = filtered_npcs[0]
             # return name of merchant script to run
             return "t3_scenario_" + self.theme + "_merchant"
 
         def get_priest(self):
+            filtered_npcs = filter(lambda npc: npc.theme == self.theme, PriestNpcs)
+            self.current_entity = filtered_npcs[0]
             # return name of priest script to run
             return "t3_scenario_" + self.theme + "_priest"
 
         def get_bard(self):
+            filtered_npcs = filter(lambda npc: npc.theme == self.theme, BardNpcs)
+            self.current_entity = filtered_npcs[0]
             # return name of bard script to run
             return "t3_scenario_" + self.theme + "_bard"
 
         def get_quest(self):
+            filtered_npcs = filter(lambda npc: npc.theme == self.theme, QuestNpcs)
+            self.current_entity = filtered_npcs[0]
             # return name of quest giver script to run
             return "t3_scenario_" + self.theme + "_quest"
 
         def get_special(self):
+            filtered_npcs = filter(lambda npc: npc.theme == self.theme, SpecialNpcs)
+            self.current_entity = filtered_npcs[0]
             # return name of special NPC script to run
             return "t3_scenario_" + self.theme + "_special"
 

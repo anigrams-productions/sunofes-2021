@@ -13,7 +13,8 @@ init python:
             Entity.__init__(self, enemy_type, name, icon, health, mana, money, style, magic, wisdom, None, None)
 
         def get_icon(self):
-            return "enemy {self.theme} {self.enemy_type}_{self.id}"
+            # Ren'Py doesn't like Python string interpolation, so we'll use concatenation instead
+            return "enemy " + self.theme + " " + self.enemy_type + "_" + self.id
 
 define DesertEnemies = [
     Enemy(Theme.Desert, EnemyType.Mammal, "Angry Bear", "01", 100, 75, 5, 6, 11),

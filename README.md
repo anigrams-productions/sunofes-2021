@@ -21,19 +21,29 @@ Planning
 
 Writing
 - [x] Field - Intro
-- [ ] Field - Scenarios
+- [x] Field - Quest
+- [ ] Field - Enemies
+- [ ] Field - Boss
 - [ ] Field - Endings
 - [ ] Volcano - Intro
-- [ ] Volcano - Scenarios
+- [ ] Volcano - Quest
+- [ ] Volcano - Enemies
+- [ ] Volcano - Boss
 - [ ] Volcano - Endings
 - [ ] Desert - Intro
-- [ ] Desert - Scenarios
+- [ ] Desert - Quest
+- [ ] Desert - Enemies
+- [ ] Desert - Boss
 - [ ] Desert - Endings
 - [ ] Snow - Intro
-- [ ] Snow - Scenarios
+- [ ] Snow - Quest
+- [ ] Snow - Enemies
+- [ ] Snow - Boss
 - [ ] Snow - Endings
 - [ ] Graveyard - Intro
-- [ ] Graveyard - Scenarios
+- [ ] Graveyard - Quest
+- [ ] Graveyard - Enemies
+- [ ] Graveyard - Boss
 - [ ] Graveyard - Endings
 
 Programming
@@ -41,11 +51,9 @@ Programming
 - [x] Inner Gameplay Loop (Scenario)
 - [ ] Add Music
 
-Extra Programming (if there's time)
-- [ ] Advanced Settings menu
-- [ ] Stats screen
-
 Extra (after the Game Jam)
+- [ ] Advanced Settings screen
+- [ ] Stats screen
 - [ ] Custom main menu
 - [ ] Custom text box
 - [ ] Custom choices
@@ -54,4 +62,6 @@ Extra (after the Game Jam)
 - [ ] RPG dialogue GUI
 - [ ] RPG shop GUI
 - [ ] RPG scenario selection GUI
+- [ ] RPG action selection GUI
 - [ ] New Game +
+- [ ] Codex (Dictionary/Glossary)

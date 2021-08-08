@@ -7,9 +7,9 @@ define nerdy = Character(preferences.t3_char_nerdy_name, color="#827281")
 define sporty = Character(preferences.t3_char_sporty_name, color="#e5914f")
 define perfect = Character(preferences.t3_char_perfect_name, color="#e3848e")
 
-define rpg_nerdy = Character(preferences.t3_rpg_char_nerdy_name, color="#827281")
-define rpg_sporty = Character(preferences.t3_rpg_char_sporty_name, color="#e5914f")
-define rpg_perfect = Character(preferences.t3_rpg_char_perfect_name, color="#e3848e")
+define rpg_nerdy_character = Character(preferences.t3_rpg_char_nerdy_name, color="#827281")
+define rpg_sporty_character = Character(preferences.t3_rpg_char_sporty_name, color="#e5914f")
+define rpg_perfect_character = Character(preferences.t3_rpg_char_perfect_name, color="#e3848e")
 
 # get capitalized versions of pronouns because Ren'Py can't handle .capitalize() in a say block
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
@@ -57,6 +57,42 @@ image dice_3 = ConditionSwitch(
     "game_state.t3_dice_roll_3 == 6", "dice 6"
 )
 
+image nerdy_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_player_nerdy", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "nerdy icon"
+)
+
+image sporty_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_player_sporty", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "sporty icon"
+)
+
+image perfect_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_player_perfect", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "perfect icon"
+)
+
+image other_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_current_scenario.current_entity", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "[game_state.t3_current_scenario.current_entity.icon]"
+)
+
 init:
     transform centerleft:
         xalign 0.1
@@ -77,6 +113,27 @@ init:
     transform diceright:
         xalign 0.6
         yalign 0.3
+
+init python:
+    def rpg_nerdy(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_player_nerdy
+        rpg_nerdy_character(what, **kwargs)
+        game_state.t3_current_speaker = None
+
+    def rpg_sporty(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_player_sporty
+        rpg_sporty_character(what, **kwargs)
+        game_state.t3_current_speaker = None
+
+    def rpg_perfect(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_player_perfect
+        rpg_perfect_character(what, **kwargs)
+        game_state.t3_current_speaker = None
+
+    def rpg_other(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_current_scenario.current_entity
+        game_state.t3_current_speaker.character(what, **kwargs)
+        game_state.t3_current_speaker = None
 
 # The game starts here.
 

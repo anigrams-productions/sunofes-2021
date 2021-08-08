@@ -47,7 +47,7 @@ label t3_encounter_scenario_end:
     $ active_player_count = 0
     while active_player_count < len(game_state.t3_remaining_players):
         if game_state.t3_remaining_players[active_player_count].can_level_up():
-            call t3_encounter_scenario_level_up
+            call expression "t3_encounter_scenario_level_up_" + game_state.t3_remaining_players[active_player_count].character_type
         
         $ active_player_count += 1
 
@@ -55,14 +55,62 @@ label t3_encounter_scenario_end:
 
     return
 
-label t3_encounter_scenario_level_up:
-    if game_state.t3_current_encounter.current_player.character_type == CharacterType.Nerdy:
-        nerdy "I leveled up!"
-    elif game_state.t3_current_encounter.current_player.character_type == CharacterType.Sporty:
-        sporty "I leveled up!"
-    elif game_state.t3_current_encounter.current_player.character_type == CharacterType.Perfect:
-        perfect "I leveled up!"
+label t3_encounter_scenario_level_up_nerdy:
+    $ nerdy_rpg(game_state.t3_player_sporty.get_level_up_phrase())
 
-    $ game_state.t3_current_encounter.current_player.level_up()
+    $ game_state.t3_player_nerdy.level_up()
+
+    menu:
+        "Which attribute should be increased?"
+
+        "Style":
+            $ game_state.t3_player_nerdy.style += 1
+            nerdy "[game_state.t3_player_nerdy.name] now has [game_state.t3_player_nerdy.style] Style."
+        "Magic":
+            $ game_state.t3_player_nerdy.magic += 1
+            nerdy "[game_state.t3_player_nerdy.name] now has [game_state.t3_player_nerdy.magic] Magic."
+        "Wisdom":
+            $ game_state.t3_player_nerdy.wisdom += 1
+            nerdy "[game_state.t3_player_nerdy.name] now has [game_state.t3_player_nerdy.wisdom] Wisdom."
+
+    return
+
+label t3_encounter_scenario_level_up_sporty:
+    $ sporty_rpg(game_state.t3_player_sporty.get_level_up_phrase())
+
+    $ game_state.t3_player_sporty.level_up()
+
+    menu:
+        "Which attribute should be increased?"
+
+        "Style":
+            $ game_state.t3_player_sporty.style += 1
+            nerdy "[game_state.t3_player_sporty.name] now has [game_state.t3_player_sporty.style] Style."
+        "Magic":
+            $ game_state.t3_player_sporty.magic += 1
+            nerdy "[game_state.t3_player_sporty.name] now has [game_state.t3_player_sporty.magic] Magic."
+        "Wisdom":
+            $ game_state.t3_player_sporty.wisdom += 1
+            nerdy "[game_state.t3_player_sporty.name] now has [game_state.t3_player_sporty.wisdom] Wisdom."
+
+    return
+
+label t3_encounter_scenario_level_up_perfect:
+    $ perfect_rpg(game_state.t3_player_sporty.get_level_up_phrase())
+
+    $ game_state.t3_player_perfect.level_up()
+
+    menu:
+        "Which attribute should be increased?"
+
+        "Style":
+            $ game_state.t3_player_perfect.style += 1
+            nerdy "[game_state.t3_player_perfect.name] now has [game_state.t3_player_perfect.style] Style."
+        "Magic":
+            $ game_state.t3_player_perfect.magic += 1
+            nerdy "[game_state.t3_player_perfect.name] now has [game_state.t3_player_perfect.magic] Magic."
+        "Wisdom":
+            $ game_state.t3_player_perfect.wisdom += 1
+            nerdy "[game_state.t3_player_perfect.name] now has [game_state.t3_player_perfect.wisdom] Wisdom."
 
     return

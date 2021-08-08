@@ -1,19 +1,22 @@
+## This file contains Field theme-specific discovery scenarios.
+## Until they're fully implemented, they'll just call the common scenario scripts instead.
+
 label t3_scenario_field_campfire:
-    "You discovered a campfire."
+    call t3_scenario_campfire
 
     return
 
 label t3_scenario_field_treasure:
-    "You discovered treasure."
+    call t3_scenario_treasure
 
     return
 
 label t3_scenario_field_puzzle:
-    "You discovered a puzzle."
+    call t3_scenario_puzzle
 
     return
 
 label t3_scenario_field_trap:
-    "You discovered a trap."
+    call t3_scenario_trap
 
     return

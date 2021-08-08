@@ -1,6 +1,6 @@
 init python:
     class Entity:
-        def __init__(self, entity_type, name, icon, health, mana, money, style, magic, wisdom, strength, weakness):
+        def __init__(self, entity_type, name, icon, health, mana, money, style, magic, wisdom, strength, weakness, color="#999999"):
             self.entity_type = entity_type
             self.name = name
             self.icon = icon
@@ -8,11 +8,13 @@ init python:
             self.mana = mana
             self.money = money
             self.style = style
+            self.magic = magic
             self.wisdom = wisdom
             self.god_mode = False
             self.cursed_mode = False
             self.strength = strength
             self.weakness = weakness
+            self.character = Character(self.name, color=color)
 
         def modified_style(self):
             if self.strength == AttributeType.Style:

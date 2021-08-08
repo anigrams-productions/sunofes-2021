@@ -153,14 +153,14 @@ init -1500 python in _console:
 
     @public_command(_("set_variable <variable> <value>: Set the designated variable to the designated value"))
     def set_variable(l):
-        parameters = l.rest().strip().split()
+        parameters = l.rest().replace("=", "").strip().split()
         var_name = str(parameters[0])
         var_value = str(parameters[1])
 
         try:
-            renpy.python.py_exec(var_name + " = " + var_value)
-            result = renpy.python.py_eval(var_name)
-            return "Variable '" + var_name + "' now has the value: " + result
+            renpy.python.py_exec("game_state." + var_name + " = " + var_value)
+            result = renpy.python.py_eval("game_state." + var_name)
+            return "Variable '" + var_name + "' now has the value: " + str(result)
         except:
             return "Could not set variable '" + var_name + "'. Check your spelling and try again."
 
@@ -169,14 +169,14 @@ init -1500 python in _console:
         name = str(l.rest().strip())
 
         try:
-            result = renpy.python.py_eval(name)
+            result = renpy.python.py_eval("game_state." + name)
             return "Variable '" + name + "' has the value: " + str(result)
         except:
             return "Could not get variable '" + name + "'. Check your spelling and try again."
 
     @public_command(_("set_setting <setting> <value>: Set the designated setting to the designated value"))
     def set_setting(l):
-        parameters = l.rest().strip().split()
+        parameters = l.rest().replace("=", "").strip().split()
         var_name = str(parameters[0])
         var_value = str(parameters[1])
 

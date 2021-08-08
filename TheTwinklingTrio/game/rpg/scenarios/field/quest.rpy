@@ -1,44 +1,69 @@
 define t3_scenario_field_quest_round_0_actions = [
     ActionMenuOption("Approach confidently", CharacterType.Nerdy, AttributeType.Style),
-    ActionMenuOption("Cast detection spell (cost 1 Mana)", CharacterType.Nerdy, AttributeType.Magic, 1),
+    ActionMenuOption("Cast detection spell (cost 10 Mana)", CharacterType.Nerdy, AttributeType.Magic, 10),
     ActionMenuOption("Analyze from afar", CharacterType.Nerdy, AttributeType.Wisdom),
     ActionMenuOption("Chat it up", CharacterType.Sporty, AttributeType.Style),
-    ActionMenuOption("Cast detection spell (cost 1 Mana)", CharacterType.Sporty, AttributeType.Magic, 1),
+    ActionMenuOption("Cast detection spell (cost 10 Mana)", CharacterType.Sporty, AttributeType.Magic, 10),
     ActionMenuOption("Look closely", CharacterType.Sporty, AttributeType.Wisdom),
     ActionMenuOption("Seek an audience", CharacterType.Perfect, AttributeType.Style),
-    ActionMenuOption("Cast detection spell (cost 1 Mana)", CharacterType.Perfect, AttributeType.Magic, 1),
+    ActionMenuOption("Cast detection spell (cost 10 Mana)", CharacterType.Perfect, AttributeType.Magic, 10),
     ActionMenuOption("Investigate further", CharacterType.Perfect, AttributeType.Wisdom)
 ]
 
 label t3_scenario_field_quest:
-    # nerdy "The meadow was eerily quiet."
-    # nerdy "No animals, no monsters, no humans. Only silence."
+    nerdy "The meadow was eerily quiet."
+    nerdy "No animals, no monsters, no humans. Only silence."
 
-    # show nerdy icon at centerleft with dissolve
+    show nerdy_icon at centerleft
+    show sporty_icon at truecenter
+    show perfect_icon at centerright
+    with dissolve
 
-    # rpg_nerdy "The intell I gathered pointed to this place, but it would seem there's nothing here."
+    nerdy "The party looked around in confusion as they discussed their next move."
 
-    # hide nerdy icon
-    # show sporty icon at truecenter with dissolve
+    rpg_nerdy "The intell I gathered pointed to this place, but it would seem there's nothing here."
 
-    # rpg_sporty "So what do we do now?"
+    rpg_sporty "So, what do we do now?"
 
-    # hide sporty icon
-    # show perfect icon at centerright with dissolve
+    rpg_perfect "We should look around for clues. Perhaps we'll find something to point us in the right direction."
 
-    # rpg_perfect "We should look around for clues. Perhaps we'll find something."
+    rpg_sporty "Uh... what about that over there? Do you think that's a clue?"
 
-    # hide perfect icon
-    # show sporty icon at truecenter with dissolve
+    show other_icon at top with dissolve
 
-    # rpg_sporty "Uh... do you think that thing's a clue?"
+    nerdy "A conspicuous training dummy stood alone in the middle of the meadow."
 
-    # hide sporty icon
-    # show npc field quest at top with dissolve
+    rpg_sporty "Just a training dummy? Aww, I was hoping for something more exciting..."
 
-    # nerdy "A conspicuous training dummy stood alone in the middle of the meadow."
-    # nerdy "In order to interact with objects and people in the world, we have to perform actions."
-    # nerdy "Remember that the success or failure of an action depends on your attributes, including a strength bonus and weakness penalty."
+    rpg_perfect "Shush. Don't question the narrator."
+
+    rpg_sporty "Hey, don't pretend you weren't hoping for more, too."
+    rpg_sporty "Like, why not a unicorn or a dragon? Ya know, something cool and exciting?"
+
+    rpg_perfect "I don't care about seeing a unicorn. I already have the most beautiful, radiant, amazing unicorn there is."
+
+    rpg_sporty "Huh, really? You do?"
+
+    rpg_perfect "Of course. If you can ride a skateboard, certainly I can ride a unicorn."
+    rpg_perfect "What about you, [preferences.t3_char_nerdy_name]? Er, I mean, [preferences.t3_rpg_char_nerdy_name]?"
+
+    rpg_nerdy "I live on a giant turtle."
+
+    rpg_sporty "Woah, you two are so cool! I'm gonna have to step up my game."
+    rpg_sporty "Oh, I know! My skateboard can be magical with -"
+
+    nerdy "The conspicuous training dummy suddenly made a sound, as if it were awkwardly clearing its wooden throat."
+
+    rpg_other "I'm still here, you know..."
+
+    rpg_sporty "Ack! It makes noise!"
+
+    rpg_perfect "Calm down. It seems like it wants us to interact with it."
+
+    nerdy "In order to interact with objects and people in the world, you have to perform actions."
+    nerdy "Remember that the success or failure of an action depends on your attributes, including a strength bonus and weakness penalty."
+    nerdy "Some actions may cost Mana, Money, or even Health to perform, so be careful not to run out."
+    nerdy "[preferences.t3_rpg_char_nerdy_name] will go first to demonstrate."
 
     # Make sure nerdy is the current player since this is the tutorial
     $ game_state.t3_current_player = game_state.t3_player_nerdy
@@ -47,134 +72,92 @@ label t3_scenario_field_quest:
 
     return
 
-label t3_scenario_field_quest_nerdy_start:
-    hide sporty icon
-    hide perfect icon
-
-    show nerdy icon at centerleft with dissolve
-    
-    rpg_nerdy "It's my turn."
-
-    return
-
 label t3_scenario_field_quest_nerdy_style_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Nerdy style success"
 
     return
 
 label t3_scenario_field_quest_nerdy_style_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Nerdy style failure"
 
     return
 
 label t3_scenario_field_quest_nerdy_magic_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Nerdy magic success"
 
     return
 
 label t3_scenario_field_quest_nerdy_magic_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Nerdy magic failure"
+
     return
 
 label t3_scenario_field_quest_nerdy_wisdom_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Nerdy wisdom success"
 
     return
 
 label t3_scenario_field_quest_nerdy_wisdom_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
-    return
-
-label t3_scenario_field_quest_sporty_start:
-    hide nerdy icon
-    hide perfect icon
-
-    show sporty icon at truecenter with dissolve
-    
-    rpg_sporty "Sweet, it's time for me to shine!"
+    "Nerdy wisdom failure"
 
     return
 
 label t3_scenario_field_quest_sporty_style_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Sporty style success"
 
     return
 
 label t3_scenario_field_quest_sporty_style_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Sporty style failure"
 
     return
 
 label t3_scenario_field_quest_sporty_magic_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Sporty magic success"
 
     return
 
 label t3_scenario_field_quest_sporty_magic_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Sporty magic failure"
+
     return
 
 label t3_scenario_field_quest_sporty_wisdom_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Sporty wisdom success"
 
     return
 
 label t3_scenario_field_quest_sporty_wisdom_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
-    return
-
-label t3_scenario_field_quest_perfect_start:
-    hide nerdy icon
-    hide sporty icon
-
-    show perfect icon at centerright with dissolve
-    
-    rpg_perfect "I'll show you how it's done."
+    "Sporty wisdom failure"
 
     return
 
 label t3_scenario_field_quest_perfect_style_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Perfect style success"
 
     return
 
 label t3_scenario_field_quest_perfect_style_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Perfect style failure"
 
     return
 
 label t3_scenario_field_quest_perfect_magic_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Perfect magic success"
 
     return
 
 label t3_scenario_field_quest_perfect_magic_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Perfect magic failure"
+
     return
 
 label t3_scenario_field_quest_perfect_wisdom_0_success:
-    $ game_state.t3_action_successful = True
-    nerdy "The action was successful."
+    "Perfect wisdom success"
 
     return
 
 label t3_scenario_field_quest_perfect_wisdom_0_failure:
-    $ game_state.t3_action_successful = False
-    nerdy "The action was not successful."
+    "Perfect wisdom failure"
+
     return

@@ -8,7 +8,7 @@ Each encounter has a unique theme, which includes a setting and story objective,
     * Keep track of secrets found, NPCs met, enemies faced, wins and losses, crazy high or low rolls that resulted in rare outcomes, etc.
 
 ## Summary of Encounters
-* First encounter is just a simple scene to introduce everyone to the game (until unicorns)
+* First encounter is just a simple scene to introduce everyone to the game
     * bg_04.png (green field)
     * day open.png
     * weekend - casual
@@ -16,7 +16,7 @@ Each encounter has a unique theme, which includes a setting and story objective,
     * Goal: introduce the characters, their RPG personas, the game mechanics, the villain, the idea of throwing a fancy party to celebrate if they make it all the way to the end
     * RPG Objective: NPC 3, a human turned training dummy, had a fight with his friend, NPC 1, before the curse struck and they were separated. NPC 3 asks the trio to find NPC 1 and make sure they're okay. When they find NPC 1 and tell him about NPC 3, the villain shows up. Despite all odds, NPC 1 risks everything to escape and find his friend, and they apologize and reconcile.
     * Real-life: Lisa introduces Jane and Christine to the game she wrote to play together with them
-* Since it's summer and it's super hot, the trio are inspired to do a volcano-themed encounter (with dragons)
+* Since it's summer and it's super hot, the trio are inspired to do a volcano-themed encounter
     * bg_01.png (fiery mountains)
     * sunset closed.png
     * after school - uniform

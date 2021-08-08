@@ -5,23 +5,11 @@ init python:
             self.character_type = character_type
 
             if self.character_type == CharacterType.Nerdy:
-                name = preferences.t3_rpg_char_nerdy_name
-                self.title = preferences.t3_rpg_char_nerdy_title
-                # TODO: allow for randomizing strength and weakness
-                strength = AttributeType.Wisdom
-                weakness = AttributeType.Style
+                self.get_nerdy_values()
             elif self.character_type == CharacterType.Sporty:
-                name = preferences.t3_rpg_char_sporty_name
-                self.title = preferences.t3_rpg_char_sporty_title
-                # TODO: allow for randomizing strength and weakness
-                strength = AttributeType.Style
-                weakness = AttributeType.Wisdom
+                self.get_sporty_values()
             elif self.character_type == CharacterType.Perfect:
-                name = preferences.t3_rpg_char_perfect_name
-                self.title = preferences.t3_rpg_char_perfect_title
-                # TODO: allow for randomizing strength and weakness
-                strength = AttributeType.Magic
-                weakness = None
+                self.get_perfect_values()
             else:
                 raise ValueError("Invalid character type " + character_type + " specified.")
 
@@ -32,9 +20,10 @@ init python:
             money = preferences.t3_rpg_attribute_starting_money
 
             self.attribute_points = preferences.t3_rpg_attribute_total_points
-            style = 0
-            magic = 0
-            wisdom = 0
+            # TODO: set these back to 0 before shipping the game
+            style = 10
+            magic = 10
+            wisdom = 10
 
             self.level = 1
             self.experience_points = 0
@@ -52,22 +41,64 @@ init python:
             self.priests_met = []
             self.priest_blessings_purchased = []
             self.bards_met = []
+            self.campfires_used = []
             self.treasure_found = []
+            self.money_found = 0
             self.puzzles_encountered = []
             self.puzzles_solved = []
             self.traps_encountered = []
             self.traps_defeated = []
 
-            Entity.__init__(self, character_type, name, icon, health, mana, money, style, magic, wisdom, strength, weakness)
+            Entity.__init__(self, character_type, self.name, icon, health, mana, money, style, magic, wisdom, self.strength, self.weakness, self.color)
+
+        def get_nerdy_values(self):
+            self.name = preferences.t3_rpg_char_nerdy_name
+            self.title = preferences.t3_rpg_char_nerdy_title
+            self.color = "#827281"
+            self.action_start_phrases = ["It's my turn.", "Time for me to act.", "I'm ready."]
+            self.level_up_phrases = ["I leveled up.", "I've gotten stronger.", "I can be better."]
+            # TODO: allow for randomizing strength and weakness
+            self.strength = AttributeType.Wisdom
+            self.weakness = AttributeType.Style
+
+        def get_sporty_values(self):
+            self.name = preferences.t3_rpg_char_sporty_name
+            self.title = preferences.t3_rpg_char_sporty_title
+            self.color = "#e5914f"
+            self.action_start_phrases = ["Sweet, it's my time to shine!", "I'm ready to go!", "Let's do this!"]
+            self.level_up_phrases = ["Awesome, I leveled up!", "I feel stronger already!", "Ultimate POWER!!"]
+            # TODO: allow for randomizing strength and weakness
+            self.strength = AttributeType.Style
+            self.weakness = AttributeType.Wisdom
+
+        def get_perfect_values(self):
+            self.name = preferences.t3_rpg_char_perfect_name
+            self.title = preferences.t3_rpg_char_perfect_title
+            self.color = "#e3848e"
+            self.action_start_phrases = ["Oh, it's my turn already?", "I'll show you how it's done.", "I'm ready whenever you are."]
+            self.level_up_phrases = ["Nice, I leveled up.", "My hard work must be paying off.", "I promise to work even harder."]
+            # TODO: allow for randomizing strength and weakness
+            self.strength = AttributeType.Magic
+            self.weakness = None
+
+        def get_action_start_phrase(self):
+            return renpy.random.choice(self.action_start_phrases)
+
+        def get_level_up_phrase(self):
+            return renpy.random.choice(self.level_up_phrases)
 
         def can_level_up(self):
             return self.is_active() and (self.experience_points >= self.experience_needed)
 
         def level_up(self):
             if can_level_up(self):
+                # "Pay" the experience points necessary to level up
+                self.experience_points -= self.experience_needed
+
+                # Increase level, grant an extra attribute point, and increase the exp needed for the next level
                 self.level += 1
-                self.experience_needed *= 1.5
                 self.attribute_points += 1
+                self.experience_needed *= 1.5
 
         def reset_health(self):
             if preferences.t3_rpg_attribute_restore_health:
@@ -93,5 +124,14 @@ init python:
             self.wisdom += amount
             calculate_modified_attributes()
 
-        def increase_experience(self, amount):
-            self.expected_points += amount
+        def gain_experience(self, success):
+            exp = 0
+
+            if success:
+                exp = renpy.random.randint(prefereces.t3_rpg_random_min_exp_success, prefereces.t3_rpg_random_max_exp_success)
+            else:
+                exp = renpy.random.randint(prefereces.t3_rpg_random_min_exp_failure, prefereces.t3_rpg_random_max_exp_failure)
+
+            self.experience_points += exp
+
+            return exp
