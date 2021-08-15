@@ -11,6 +11,9 @@ define rpg_nerdy_character = Character(preferences.t3_rpg_char_nerdy_name, color
 define rpg_sporty_character = Character(preferences.t3_rpg_char_sporty_name, color="#e5914f")
 define rpg_perfect_character = Character(preferences.t3_rpg_char_perfect_name, color="#e3848e")
 
+define rpg_villain_character_unknown = Character(preferences.t3_rpg_char_villain_title, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
+define rpg_villain_character_known = Character(preferences.t3_rpg_char_villain_name, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
+
 # get capitalized versions of pronouns because Ren'Py can't handle .capitalize() in a say block
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
 define t3_pronoun_nerdy_obj_cap = preferences.t3_pronoun_nerdy_obj.capitalize()
@@ -23,6 +26,8 @@ define t3_rpg_pronoun_nerdy_obj_cap = preferences.t3_rpg_pronoun_nerdy_obj.capit
 define t3_rpg_pronoun_nerdy_pos_cap = preferences.t3_rpg_pronoun_nerdy_pos.capitalize()
 define t3_rpg_pronoun_nerdy_poss_cap = preferences.t3_rpg_pronoun_nerdy_poss.capitalize()
 define t3_rpg_pronoun_nerdy_ref_cap = preferences.t3_rpg_pronoun_nerdy_ref.capitalize()
+
+define t3_rpg_pronoun_sporty_sub_cap = preferences.t3_rpg_pronoun_sporty_sub.capitalize()
 
 define t3_rpg_pronoun_perfect_sub_cap = preferences.t3_rpg_pronoun_perfect_sub.capitalize()
 define t3_rpg_pronoun_perfect_obj_cap = preferences.t3_rpg_pronoun_perfect_obj.capitalize()
@@ -84,6 +89,15 @@ image perfect_icon = Composite(
     (30, 29), "perfect icon"
 )
 
+image villain_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_villain", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "boss grave knight"
+)
+
 image other_icon = Composite(
     (315, 315),
     (0,0), ConditionSwitch(
@@ -114,6 +128,14 @@ init:
         xalign 0.6
         yalign 0.3
 
+    transform topleftcenter:
+        yalign 0
+        xalign 0.35
+
+    transform toprightcenter:
+        yalign 0
+        xalign 0.65
+
 init python:
     def rpg_nerdy(what, **kwargs):
         game_state.t3_current_speaker = game_state.t3_player_nerdy
@@ -130,6 +152,16 @@ init python:
         rpg_perfect_character(what, **kwargs)
         game_state.t3_current_speaker = None
 
+    def rpg_villain(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_villain
+
+        if game_state.t3_villain_known_name == game_state.t3_villain_actual_name:
+            rpg_villain_character_known(what, **kwargs)
+        else:
+            rpg_villain_character_unknown(what, **kwargs)
+
+        game_state.t3_current_speaker = None
+
     def rpg_other(what, **kwargs):
         game_state.t3_current_speaker = game_state.t3_current_scenario.current_entity
         game_state.t3_current_speaker.character(what, **kwargs)
@@ -141,15 +173,23 @@ label start:
     # Initialize the game state
     $ game_state = GameState()
 
+label after_load:
+    if game_state.t3_current_scenario and game_state.t3_current_scenario.current_entity:
+        $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
+
 label t3_introduction:
-    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
-    jump t3_encounter_field_start
+    # $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_boss
+    # jump expression game_state.t3_current_encounter.scenario_boss.script
+    # $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
+    # jump t3_scenario_field_quest
+    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_objective
+    jump t3_scenario_field_objective
 
     scene bg sunny
 
     pause 1.5
 
-    sporty "Ugh... so hot..."
+    sporty "Ugh... {p=0.5}So hot..."
     sporty "With that sun, you'd never believe summer's almost over."
 
     pause 1.5
@@ -199,10 +239,14 @@ label t3_introduction:
     show perfect casual 2
 
     perfect "Oh! Of course, that would be perfect for the three of us."
+    
+    show sporty casual 1
+
+    sporty "Right, since we're best friends and all."
 
     show nerdy casual 1
 
-    nerdy "Good. I'll explain the game now."
+    nerdy "I'll explain the game now."
 
     show sporty casual 1
     show perfect casual 1
@@ -210,13 +254,13 @@ label t3_introduction:
     show nerdy casual 8
 
     nerdy "This is a role-playing game in a fantasy setting with humans, monsters, fairies, and sorcerers."
-    nerdy "[preferences.t3_rpg_char_villain_title] has cursed the humans of the land, turning them into monsters."
-    nerdy "We have to work together to defeat [preferences.t3_rpg_char_villain_title] and break the curse."
+    nerdy "Entire human villages have started disappearing off the map and no one knows why."
+    nerdy "We have to work together to uncover what's happening and put a stop to it before more innocent lives are lost."
 
     show nerdy casual 1
 
     nerdy "Each of us will create a character with set attributes. One attribute will be a strength and one will be a weakness."
-    nerdy "The available attributes are Style, Magic, and Wisdom."
+    nerdy "The available attributes are {color=#6684a3}Style{/color}, {color=#6684a3}Magic{/color}, and {color=#6684a3}Wisdom{/color}."
     nerdy "These attributes determine what actions we can take in the world."
 
     show sporty casual 26
@@ -244,7 +288,7 @@ label t3_introduction:
 
     show nerdy casual 1
 
-    nerdy "Yes, that's right. Let's create our characters."
+    nerdy "Let's create our characters now."
     nerdy "Give yourself a name, a backstory, a strong attribute, and a weak attribute."
 
 label t3_introduction_sporty_character_creation:
@@ -258,11 +302,11 @@ label t3_introduction_sporty_character_creation:
     show perfect casual 1 at topright
 
     sporty "Let's see..."
-    sporty "I'll be... um... wait, I know! I'll be [preferences.t3_rpg_char_sporty_name]. That's a cool name, right?"
+    sporty "I'll be... um... wait, I know! I'll be {color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color}. That's a cool name, right?"
 
     show sporty casual 35
 
-    sporty "And my strength is definitely Style."
+    sporty "And my strength is definitely {color=#6684a3}Style.{/color}"
     sporty "I'll be a super rad [preferences.t3_rpg_char_sporty_title], riding my skateboard around and doing sweet tricks only I can do."
 
     show perfect casual 4
@@ -283,7 +327,7 @@ label t3_introduction_sporty_character_creation:
 
     show perfect casual 3
 
-    perfect "It should be Wisdom, don't you think?"
+    perfect "It should be {color=#6684a3}Wisdom{/color}, don't you think?"
     perfect "Considering your grades, I mean."
 
     show sporty casual 15
@@ -293,7 +337,7 @@ label t3_introduction_sporty_character_creation:
     show nerdy casual 1
 
     nerdy "Okay."
-    nerdy "Other than your designated strength and weakness, you can allocate up to [preferences.t3_rpg_attribute_total_points] points on individual attributes."
+    nerdy "Other than your designated strength and weakness, you can allocate up to {color=#6684a3}[preferences.t3_rpg_attribute_total_points]{/color} points on individual attributes."
 
     show sporty casual 11
 
@@ -320,7 +364,7 @@ label t3_introduction_sporty_character_creation:
     sporty "Will you help me choose, [preferences.t3_char_nerdy_name]?"
 
     menu:
-        "How much Style should [preferences.t3_char_sporty_name]'s character [preferences.t3_rpg_char_sporty_name] have?"
+        "How much {color=#6684a3}Style{/color} should [preferences.t3_char_sporty_name]'s character {color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color} have?"
         
         "Novice":
             $ game_state.t3_player_sporty.style = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -329,16 +373,16 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose a Novice amount of Style."
+            nerdy "You should choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 4
 
-            perfect "But [preferences.t3_pronoun_sporty_pos] character's strength is Style, right? Are you sure you want to do that?"
+            perfect "But [preferences.t3_pronoun_sporty_pos] character's strength is {color=#6684a3}Style{/color}, right? Are you sure you want to do that?"
 
             show sporty casual 3
 
             sporty "Of course, it makes perfect sense!"
-            sporty "If my strength is Style, I get a bonus, right? So I don't need to allocate as many points to it."
+            sporty "If my strength is {color=#6684a3}Style{/color}, I get a bonus, right? So I don't need to allocate as many points to it."
 
             show perfect casual 1
 
@@ -350,15 +394,15 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose an Average amount of Style."
+            nerdy "You should choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 9
 
-            perfect "[preferences.t3_pronoun_sporty_pos] character's strength is Style, right? Why only Average?"
+            perfect "But [preferences.t3_pronoun_sporty_pos] character's strength is {color=#6684a3}Style{/color}, right? Why only Average?"
 
             show sporty casual 3
 
-            sporty "For a [preferences.t3_rpg_char_sporty_title], even an average amount of Style is still way more than anyone else."
+            sporty "For a [preferences.t3_rpg_char_sporty_title], even an average amount of {color=#6684a3}Style{/color} is still way more than anyone else."
             sporty "I'm sure I'll be fine."
 
             show perfect casual 3
@@ -371,26 +415,26 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose an Expert amount of Style."
+            nerdy "You should choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 2
 
             perfect "Of course, that makes perfect sense."
-            perfect "All that Style will play to [preferences.t3_pronoun_sporty_pos] strengths quite nicely."
+            perfect "All that {color=#6684a3}Style{/color} will play to [preferences.t3_pronoun_sporty_pos] strengths quite nicely."
 
             show sporty casual 3
 
-            sporty "I know, right? I'm gonna be unstoppable with my amazing Style!"
+            sporty "I know, right? I'm gonna be unstoppable with my amazing {color=#6684a3}Style{/color}!"
 
     show nerdy casual 1
 
-    nerdy "[preferences.t3_rpg_char_sporty_name] now has [game_state.t3_player_sporty.style] Style points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
-    nerdy "Next is Magic."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color} now has [game_state.t3_player_sporty.style] {color=#6684a3}Style{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
+    nerdy "Next is {color=#6684a3}Magic{/color}."
 
     show sporty casual 1
 
     menu:
-        "How much Magic should [preferences.t3_char_sporty_name]'s character [preferences.t3_rpg_char_sporty_name] have?"
+        "How much {color=#6684a3}Magic{/color} should [preferences.t3_char_sporty_name]'s character {color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color} have?"
         
         "Novice" if game_state.t3_attribute_points_to_allocate >= int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice)):
             $ game_state.t3_player_sporty.magic = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -398,11 +442,11 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose a Novice amount of Magic."
+            nerdy "You should choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 1
             
-            perfect "Don't you think a [preferences.t3_rpg_char_sporty_title] should have more Magic than that?"
+            perfect "Don't you think a [preferences.t3_rpg_char_sporty_title] should have more {color=#6684a3}Magic{/color} than that?"
 
             show sporty casual 14
 
@@ -422,12 +466,12 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose an Average amount of Magic."
+            nerdy "You should choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 2
 
             perfect "That would make sense, wouldn't it?"
-            perfect "A [preferences.t3_rpg_char_sporty_title] should have at least an Average amount of Magic."
+            perfect "A [preferences.t3_rpg_char_sporty_title] should have at least an {color=#6684a3}Average{/color} amount of {color=#6684a3}Magic{/color}."
 
             show sporty casual 26
 
@@ -439,7 +483,7 @@ label t3_introduction_sporty_character_creation:
 
             show nerdy casual 8
 
-            nerdy "You should choose an Expert amount of Magic."
+            nerdy "You should choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 37
 
@@ -447,7 +491,7 @@ label t3_introduction_sporty_character_creation:
 
             show sporty casual 6
 
-            sporty "Planning on making a Magic-based character, huh?"
+            sporty "Planning on making a {color=#6684a3}Magic{/color}-based character, huh?"
 
             show sporty casual 2
 
@@ -455,13 +499,13 @@ label t3_introduction_sporty_character_creation:
 
     show nerdy casual 1
 
-    nerdy "[preferences.t3_rpg_char_sporty_name] now has [game_state.t3_player_sporty.magic] Magic points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color} now has [game_state.t3_player_sporty.magic] {color=#6684a3}Magic{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
 
-    nerdy "Let's go ahead and allocate your remaining points to Wisdom."
+    nerdy "Let's go ahead and allocate your remaining points to {color=#6684a3}Wisdom{/color}."
 
     $ game_state.t3_player_sporty.wisdom = game_state.t3_attribute_points_to_allocate
 
-    nerdy "[preferences.t3_rpg_char_sporty_name] now has [game_state.t3_player_sporty.wisdom] Wisdom points."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_sporty_name]{/color} now has [game_state.t3_player_sporty.wisdom] {color=#6684a3}Wisdom{/color} points."
 
     show perfect casual 1
     show sporty casual 32
@@ -480,7 +524,7 @@ label t3_introduction_perfect_character_creation:
     show perfect casual 2
 
     perfect "Sure, I can go next."
-    perfect "My character will be [preferences.t3_rpg_char_perfect_name], an elegant [preferences.t3_rpg_char_perfect_title] whose strength is Magic."
+    perfect "My character will be {color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color}, an elegant [preferences.t3_rpg_char_perfect_title] whose strength is {color=#6684a3}Magic{/color}."
 
     show perfect casual 3
 
@@ -488,7 +532,7 @@ label t3_introduction_perfect_character_creation:
 
     show sporty casual 29
 
-    sporty "No weakness? Hey, that's no fair. [preferences.t3_char_nerdy_name] said everyone has to have a weakness."
+    sporty "No weakness? Hey, that's no fair. [preferences.t3_char_nerdy_name] said everybody has to have a weakness."
 
     show nerdy casual 8
 
@@ -500,8 +544,8 @@ label t3_introduction_perfect_character_creation:
 
     show nerdy casual 1
 
-    nerdy "The penalty for a weakness would be small, anyway, and Magic is more limited in its use than the other attributes."
-    nerdy "It balances out. Is that acceptable?"
+    nerdy "The penalty for a weakness is small, and {color=#6684a3}Magic{/color} is more limited in its use than the other attributes."
+    nerdy "It balances out. Are you okay with that?"
 
     show perfect casual 9
 
@@ -513,7 +557,7 @@ label t3_introduction_perfect_character_creation:
 
     show sporty casual 1
 
-    sporty "It's just a game, right? The important thing is for everyone to have fun."
+    sporty "It's just a game, right? The important thing is for everybody to have fun."
 
     show perfect casual 2
 
@@ -531,7 +575,7 @@ label t3_introduction_perfect_character_creation:
     perfect "You did such a good job of helping [preferences.t3_char_sporty_name] decide on [preferences.t3_pronoun_sporty_poss]."
 
     menu:
-        "How much Style should [preferences.t3_char_perfect_name]'s character [preferences.t3_rpg_char_perfect_name] have?"
+        "How much {color=#6684a3}Style{/color} should [preferences.t3_char_perfect_name]'s character {color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color} have?"
         
         "Novice":
             $ game_state.t3_player_perfect.style = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -539,7 +583,7 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose a Novice amount of Style."
+            nerdy "You should choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 30
 
@@ -563,7 +607,7 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose an Average amount of Style."
+            nerdy "You should choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Style{/color}."
 
             show sporty casual 6
 
@@ -579,7 +623,7 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose an Expert amount of Style."
+            nerdy "You should choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 3
 
@@ -595,13 +639,13 @@ label t3_introduction_perfect_character_creation:
 
     show nerdy casual 8
 
-    nerdy "[preferences.t3_rpg_char_perfect_name] now has [game_state.t3_player_perfect.style] Style points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
-    nerdy "Next is Magic."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color} now has [game_state.t3_player_perfect.style] {color=#6684a3}Style{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
+    nerdy "Next is {color=#6684a3}Magic{/color}."
 
     show perfect casual 1
 
     menu:
-        "How much Magic should [preferences.t3_char_perfect_name]'s character [preferences.t3_rpg_char_perfect_name] have?"
+        "How much {color=#6684a3}Magic{/color} should [preferences.t3_char_perfect_name]'s character {color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color} have?"
         
         "Novice" if game_state.t3_attribute_points_to_allocate >= int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice)):
             $ game_state.t3_player_perfect.magic = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -609,11 +653,11 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose a Novice amount of Magic."
+            nerdy "You should choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 33
 
-            perfect "Wait, what? But my strength is Magic! Surely I should have more Magic points than that."
+            perfect "Wait, what? But my strength is {color=#6684a3}Magic{/color}! Surely I should have more {color=#6684a3}Magic{/color} points than that."
 
             show sporty casual 15
 
@@ -629,11 +673,11 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose an Average amount of Magic."
+            nerdy "You should choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 8
 
-            perfect "I would have expected a little more Magic, but I suppose having a well-rounded character is a sound strategy."
+            perfect "I would have expected a little more {color=#6684a3}Magic{/color}, but I suppose having a well-rounded character is a sound strategy."
 
             show sporty casual 10
 
@@ -649,15 +693,15 @@ label t3_introduction_perfect_character_creation:
 
             show nerdy casual 1
 
-            nerdy "You should choose an Expert amount of Magic."
+            nerdy "You should choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 3
 
-            perfect "Naturally. Since my strength is Magic, it makes sense for me to have a lot of Magic points."
+            perfect "Naturally. Since my strength is {color=#6684a3}Magic{/color}, it makes sense for me to have a lot of {color=#6684a3}Magic{/color} points."
 
             show sporty casual 11
 
-            sporty "Just don't go overboard with all the Magic stuff, alright?"
+            sporty "Just don't go overboard with all the {color=#6684a3}Magic{/color} stuff, alright?"
 
             show perfect casual 2
 
@@ -666,13 +710,13 @@ label t3_introduction_perfect_character_creation:
     show nerdy casual 8
     show sporty casual 1
 
-    nerdy "[preferences.t3_rpg_char_perfect_name] now has [game_state.t3_player_perfect.magic] Magic points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color} now has [game_state.t3_player_perfect.magic] {color=#6684a3}Magic{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
 
-    nerdy "Let's go ahead and allocate your remaining points to Wisdom."
+    nerdy "Let's go ahead and allocate your remaining points to {color=#6684a3}Wisdom{/color}."
 
     $ game_state.t3_player_perfect.wisdom = game_state.t3_attribute_points_to_allocate
 
-    nerdy "[preferences.t3_rpg_char_perfect_name] now has [game_state.t3_player_perfect.wisdom] Wisdom points."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_perfect_name]{/color} now has [game_state.t3_player_perfect.wisdom] {color=#6684a3}Wisdom{/color} points."
 
     show perfect casual 3
 
@@ -693,8 +737,8 @@ label t3_introduction_nerdy_character_creation:
 
     show nerdy casual 1
 
-    nerdy "My character will be [preferences.t3_rpg_char_nerdy_name], more commonly known as the [preferences.t3_rpg_char_nerdy_title]."
-    nerdy "[t3_rpg_pronoun_nerdy_pos_cap] strength is Wisdom and [preferences.t3_rpg_pronoun_nerdy_pos] weakness is Style."
+    nerdy "My character will be {color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color}, more commonly known as the [preferences.t3_rpg_char_nerdy_title]."
+    nerdy "[t3_rpg_pronoun_nerdy_pos_cap] strength is {color=#6684a3}Wisdom{/color} and [preferences.t3_rpg_pronoun_nerdy_pos] weakness is {color=#6684a3}Style{/color}."
 
     show sporty casual 6
 
@@ -709,7 +753,7 @@ label t3_introduction_nerdy_character_creation:
     nerdy "For my character's attributes..."
 
     menu:
-        "How much Style should my character [preferences.t3_rpg_char_nerdy_name] have?"
+        "How much {color=#6684a3}Style{/color} should my character {color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color} have?"
         
         "Novice":
             $ game_state.t3_player_nerdy.style = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -717,7 +761,7 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose a Novice amount of Style."
+            nerdy "I'll choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 3
 
@@ -725,7 +769,7 @@ label t3_introduction_nerdy_character_creation:
 
             show sporty casual 3
 
-            sporty "Don't worry, my character's got enough Style for all three of us."
+            sporty "Don't worry, my character's got enough {color=#6684a3}Style{/color} for all three of us."
             
         "Average":
             $ game_state.t3_player_nerdy.style = int(game_state.calculate_attribute_allocation(AttributeAllocation.Average))
@@ -733,7 +777,7 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose an Average amount of Style."
+            nerdy "I'll choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 2
 
@@ -757,11 +801,11 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose an Expert amount of Style."
+            nerdy "I'll choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Style{/color}."
 
             show perfect casual 2
 
-            perfect "I've never heard of a [preferences.t3_rpg_char_nerdy_title] with a lot of Style, but if anyone can make it work, you can."
+            perfect "I've never heard of a [preferences.t3_rpg_char_nerdy_title] with a lot of {color=#6684a3}Style{/color}, but if anyone can make it work, you can."
 
             show sporty casual 36
 
@@ -781,11 +825,11 @@ label t3_introduction_nerdy_character_creation:
 
     show nerdy casual 8
 
-    nerdy "[preferences.t3_rpg_char_nerdy_name] now has [game_state.t3_player_nerdy.style] Style points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
-    nerdy "Next is Magic."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color} now has [game_state.t3_player_nerdy.style] {color=#6684a3}Style{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
+    nerdy "Next is {color=#6684a3}Magic{/color}."
 
     menu:
-        "How much Magic should my character [preferences.t3_rpg_char_nerdy_name] have?"
+        "How much {color=#6684a3}Magic{/color} should my character {color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color} have?"
         
         "Novice" if game_state.t3_attribute_points_to_allocate >= int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice)):
             $ game_state.t3_player_nerdy.magic = int(game_state.calculate_attribute_allocation(AttributeAllocation.Novice))
@@ -793,11 +837,11 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose a Novice amount of Magic."
+            nerdy "I'll choose a {color=#6684a3}Novice{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 9
 
-            perfect "Really? Somehow I expected you to choose a higher level of Magic."
+            perfect "Really? Somehow I expected you to choose a higher level of {color=#6684a3}Magic{/color}."
 
             show sporty casual 30
 
@@ -813,19 +857,19 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose an Average amount of Magic."
+            nerdy "I'll choose an {color=#6684a3}Average{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 2
 
-            perfect "Yes, going for a balanced amount of Magic seems like the sensible choice."
+            perfect "Yes, going for a balanced amount of {color=#6684a3}Magic{/color} seems like the sensible choice."
 
             show sporty casual 15
 
-            sporty "I bet you just want to keep all the Magic to yourself."
+            sporty "I bet you just want to keep all the {color=#6684a3}Magic{/color} to yourself."
 
             show perfect casual 9
 
-            perfect "Nothing of the sort! I just think it's nice that [preferences.t3_pronoun_nerdy_pos] character has some Magic."
+            perfect "Nothing of the sort! I just think it's nice that [preferences.t3_pronoun_nerdy_pos] character has some {color=#6684a3}Magic{/color}."
             
         "Expert" if game_state.t3_attribute_points_to_allocate >= int(game_state.calculate_attribute_allocation(AttributeAllocation.Expert)):
             $ game_state.t3_player_nerdy.magic = int(game_state.calculate_attribute_allocation(AttributeAllocation.Expert))
@@ -833,11 +877,11 @@ label t3_introduction_nerdy_character_creation:
 
             show nerdy casual 1
 
-            nerdy "I'll choose an Expert amount of Magic."
+            nerdy "I'll choose an {color=#6684a3}Expert{/color} amount of {color=#6684a3}Magic{/color}."
 
             show perfect casual 3
 
-            perfect "I see you, too, understand the value and potential of great Magic."
+            perfect "I see you, too, understand the value and potential of great {color=#6684a3}Magic{/color}."
 
             show sporty casual 9
 
@@ -847,13 +891,13 @@ label t3_introduction_nerdy_character_creation:
     show sporty casual 1
     show perfect casual 1
 
-    nerdy "[preferences.t3_rpg_char_nerdy_name] now has [game_state.t3_player_nerdy.magic] Magic points and [game_state.t3_attribute_points_to_allocate] points left to allocate."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color} now has [game_state.t3_player_nerdy.magic] {color=#6684a3}Magic{/color} points and {color=#6684a3}[game_state.t3_attribute_points_to_allocate]{/color} points left to allocate."
 
-    nerdy "Let's go ahead and allocate my remaining points to Wisdom."
+    nerdy "Let's go ahead and allocate my remaining points to {color=#6684a3}Wisdom{/color}."
 
     $ game_state.t3_player_nerdy.wisdom = game_state.t3_attribute_points_to_allocate
 
-    nerdy "[preferences.t3_rpg_char_nerdy_name] now has [game_state.t3_player_nerdy.wisdom] Wisdom points."
+    nerdy "{color=#6684a3}[preferences.t3_rpg_char_nerdy_name]{/color} now has [game_state.t3_player_nerdy.wisdom] {color=#6684a3}Wisdom{/color} points."
 
     show nerdy casual 3
 
@@ -861,7 +905,7 @@ label t3_introduction_nerdy_character_creation:
 
     show sporty casual 22
 
-    sporty "Finally! I'm ready to kick the crap out of that [preferences.t3_rpg_char_villain_title]."
+    sporty "Finally! I'm ready to kick the crap out of some monsters."
 
     show perfect casual 3
 

@@ -1,12 +1,14 @@
+define t3_scenario_merchant_health_items = ["Cheeseburger", "Hot Dog", "Ice Cream", "House Salad", "French Fries"]
+define t3_scenario_merchant_mana_items = ["Milkshake", "Smoothie", "Coffee", "Iced Tea", "Soda"]
+
 label t3_scenario_merchant:
-    $ game_state.t3_current_player.merchants_met.append(game_state.t3_current_scenario)
+    $ game_state.t3_current_player.merchants_met.append(game_state.t3_current_scenario.current_entity)
+    $ health_item_of_choice = renpy.random.choice(t3_scenario_merchant_health_items).capitalize()
+    $ mana_item_of_choice = renpy.random.choice(t3_scenario_merchant_mana_items).capitalize()
 
     "A merchant has set up shop, shelves stocked and ready to peddle to any passersby."
 
-    show nerdy_icon at centerleft
-    show sporty_icon at truecenter
-    show perfect_icon at centerright
-    with dissolve
+    call t3_scenario_show_trio
 
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         rpg_nerdy "Looks like a good place to shop."
@@ -33,26 +35,29 @@ label t3_scenario_merchant:
         elif game_state.t3_current_player.character_type == CharacterType.Perfect:
             rpg_perfect "I wonder what I should buy."
 
-        "[game_state.t3_current_player.name] has [game_state.t3_current_player.health] Health, [game_state.t3_current_player.mana] Mana, and [game_state.t3_current_player.money] Money remaining."
+        "[game_state.t3_current_player.name] has [game_state.t3_current_player.health] {color=#6684a3}Health{/color}, [game_state.t3_current_player.mana] {color=#6684a3}Mana{/color}, and [game_state.t3_current_player.money] {color=#6684a3}Money{/color} remaining."
 
         menu:
             "What should we buy?"
 
-            "Health Potion (cost [preferences.t3_rpg_shop_health_potion_cost] Money)":
-                rpg_other "Excellent choice. This potion should restore [preferences.t3_rpg_shop_health_potion_amt] Health."
+            # TODO: Create Item class with name, type, cost, and how much it adds/restores/subtracts (depending on type) and use that here instead
+            "[health_item_of_choice] (cost [preferences.t3_rpg_shop_health_potion_cost] Money)":
+                rpg_other "Excellent choice. This food should restore [preferences.t3_rpg_shop_health_potion_amt] {color=#6684a3}Health{/color}."
 
                 $ game_state.t3_current_player.update_money(preferences.t3_rpg_shop_health_potion_cost * -1)
                 $ game_state.t3_current_player.update_health(preferences.t3_rpg_shop_health_potion_amt)
+                $ game_state.t3_current_player.merchant_items_purchased.append(health_item_of_choice)
 
-                "[game_state.t3_current_player.name] now has [game_state.t3_current_player.health] Health and [game_state.t3_current_player.money] Money."
+                "[game_state.t3_current_player.name] now has [game_state.t3_current_player.health] {color=#6684a3}Health{/color} and [game_state.t3_current_player.money] {color=#6684a3}Money{/color}."
 
-            "Mana Potion (cost [preferences.t3_rpg_shop_mana_potion_cost] Money)":
-                rpg_other "You have a good eye. This potion should restore [preferences.t3_rpg_shop_mana_potion_amt] Mana."
+            "[mana_item_of_choice] (cost [preferences.t3_rpg_shop_mana_potion_cost] Money)":
+                rpg_other "You have a good eye. This drink should restore [preferences.t3_rpg_shop_mana_potion_amt] {color=#6684a3}Mana{/color}."
 
                 $ game_state.t3_current_player.update_money(preferences.t3_rpg_shop_mana_potion_cost * -1)
                 $ game_state.t3_current_player.update_mana(preferences.t3_rpg_shop_mana_potion_amt)
+                $ game_state.t3_current_player.merchant_items_purchased.append(mana_item_of_choice)
 
-                "[game_state.t3_current_player.name] now has [game_state.t3_current_player.mana] Mana and [game_state.t3_current_player.money] Money."
+                "[game_state.t3_current_player.name] now has [game_state.t3_current_player.mana] {color=#6684a3}Mana{/color} and [game_state.t3_current_player.money] {color=#6684a3}Money{/color}."
 
             "Nothing":
                 rpg_other "Oh, that's a shame."
@@ -63,10 +68,6 @@ label t3_scenario_merchant:
 
     rpg_other "Thank you and come again."
 
-    hide other_icon
-    hide nerdy_icon
-    hide sporty_icon
-    hide perfect_icon
-    with dissolve
+    call t3_scenario_hide_trio
 
     return

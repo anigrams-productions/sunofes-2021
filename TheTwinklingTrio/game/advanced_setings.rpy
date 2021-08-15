@@ -123,3 +123,8 @@ default preferences.t3_rpg_shop_health_potion_cost = 50
 default preferences.t3_rpg_shop_health_potion_amt = 50
 default preferences.t3_rpg_shop_mana_potion_cost = 50
 default preferences.t3_rpg_shop_mana_potion_amt = 50
+
+## ACCESSIBILITY
+default preferences.t3_default_font = gui.preference("font", "fonts/normal/Chilanka-Regular.ttf")
+default preferences.t3_default_font_size = gui.preference("size", 28)
+default preferences.t3_use_character_specific_fonts = True

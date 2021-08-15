@@ -9,6 +9,8 @@ init offset = -2
 ## Calling gui.init resets the styles to sensible default values, and sets the
 ## width and height of the game.
 init python:
+    config.ftfont_scale["fonts/normal/OpenDyslexic-Regular.otf"] = .7
+    config.ftfont_scale["DejaVuSans.ttf"] = .9
     gui.init(1600, 900)
 
 
@@ -55,32 +57,31 @@ define gui.interface_text_color = u'#404040'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "fonts/normal/Chilanka-Regular.ttf"
-# define gui.text_font = "fonts/normal/Gaegu-Regular.ttf"
+define gui.text_font = gui.preference("font", "fonts/normal/Chilanka-Regular.ttf")
 
 ## The font used for character names.
-define gui.name_text_font = "fonts/normal/Chilanka-Regular.ttf"
+define gui.name_text_font = gui.preference("font", "fonts/normal/Chilanka-Regular.ttf")
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "fonts/normal/Chilanka-Regular.ttf"
+define gui.interface_text_font = gui.preference("font", "fonts/normal/Chilanka-Regular.ttf")
 
 ## The size of normal dialogue text.
-define gui.text_size = 28
+define gui.text_size = gui.preference("size", 28)
 
 ## The size of character names.
-define gui.name_text_size = 38
+define gui.name_text_size = (gui.preference("size", 28) + 10)
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 28
+define gui.interface_text_size = gui.preference("size", 28)
 
 ## The size of labels in the game's user interface.
-define gui.label_text_size = 30
+define gui.label_text_size = (gui.preference("size", 28) + 2)
 
 ## The size of text on the notify screen.
-define gui.notify_text_size = 20
+define gui.notify_text_size = (gui.preference("size", 28) - 8)
 
 ## The size of the game's title.
-define gui.title_text_size = 63
+define gui.title_text_size = 64
 define gui.title_text_color = u'#ffffff'
 
 define gui.version_text_color = u'#ffffff'

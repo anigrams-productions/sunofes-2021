@@ -1,8 +1,5 @@
 label t3_scenario_campfire:
-    show nerdy_icon at centerleft
-    show sporty_icon at truecenter
-    show perfect_icon at centerright
-    with dissolve
+    call t3_scenario_show_trio
 
     "The weary party came across an inviting campfire."
     "Its soothing flames seemed like they could cure all ills and restore the party's strength."
@@ -31,18 +28,12 @@ label t3_scenario_campfire:
         "Continue forward":
             "Despite the allure of the campfire, the party decided to push forward, confident in their ability to take on the dangers ahead."
 
-    hide nerdy_icon
-    hide sporty_icon
-    hide perfect_icon
-    with dissolve
+    call t3_scenario_hide_trio
 
     return
 
 label t3_scenario_treasure:
-    show nerdy_icon at centerleft
-    show sporty_icon at truecenter
-    show perfect_icon at centerright
-    with dissolve
+    call t3_scenario_show_trio
 
     $ treasure_reward = renpy.random.randint(1,1000)
 
@@ -61,10 +52,7 @@ label t3_scenario_treasure:
     $ game_state.t3_current_player.treasure_found.append(game_state.t3_current_scenario)
     $ game_state.t3_current_player.money_found += treasure_reward
 
-    hide nerdy_icon
-    hide sporty_icon
-    hide perfect_icon
-    with dissolve
+    call t3_scenario_hide_trio
 
     return
 

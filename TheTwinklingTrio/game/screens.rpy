@@ -748,6 +748,33 @@ screen preferences():
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
 
+                vbox:
+                    style_prefix "radio"
+                    label _("Font")
+                    textbutton _("DejaVuSans") action gui.SetPreference("font", "DejaVuSans.ttf")
+                    textbutton _("Chilanka") action gui.SetPreference("font", "fonts/normal/Chilanka-Regular.ttf")
+                    textbutton _("OpenDyslexic") action  gui.SetPreference("font", "fonts/normal/OpenDyslexic-Regular.otf")
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Unique Fonts for Characters *")
+                    textbutton _("On") action SetField(preferences, "t3_use_character_specific_fonts", True)
+                    textbutton _("Off") action SetField(preferences, "t3_use_character_specific_fonts", False)
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Text Size")
+                    textbutton _("Small") action gui.SetPreference("size", 24)
+                    textbutton _("Medium") action gui.SetPreference("size", 28)
+                    textbutton _("Big") action gui.SetPreference("size", 32)
+                    
+
+            null height (4 * gui.pref_spacing)
+
+            hbox:
+                # style_prefix "pref"
+                label _("* = Restart the game for changes to take effect")
+
             null height (4 * gui.pref_spacing)
 
             hbox:
