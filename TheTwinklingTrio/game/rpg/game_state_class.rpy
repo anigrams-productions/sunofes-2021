@@ -32,6 +32,7 @@ init python:
 
             self.t3_experience_gained = 0
 
+            self.t3_training_dummy = QuestNpcs[0]
             self.t3_training_dummy_known_name = "Training Dummy"
             self.t3_training_dummy_actual_name = "Rembi"
             self.t3_egg_man_known_name = "Egg Man"

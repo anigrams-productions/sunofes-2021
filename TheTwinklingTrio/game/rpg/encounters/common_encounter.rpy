@@ -30,7 +30,8 @@ label t3_encounter_scenarios_play:
 label t3_encounter_scenario_select:
     $ game_state.get_scenario_menu()
 
-    $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
+    if game_state.t3_current_scenario.current_entity:
+        $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
 
     call expression game_state.t3_current_scenario.script
 

@@ -304,12 +304,55 @@ label t3_scenario_field_objective_encounter:
 
     rpg_other "Yes... I will be, thanks to you three."
 
+    rpg_other "Now, take me to [game_state.t3_training_dummy_known_name]!"
+
+    scene black
+
+    scene bg rpg field
+
+    call t3_scenario_show_trio
+
+    rpg_sporty "Ahh, nothin' like a happy reunion to make you feel all warm and fuzzy inside."
+
+    rpg_perfect "Indeed. I'm so happy for you two."
+
+    show training_dummy_icon at topleftcenter
+    show other_icon at toprightcenter
+    with dissolve
+
+    rpg_training_dummy "Thank you! Truly, thank you so much for finding him."
+
     return
 
 label t3_scenario_field_objective_romance:
     call t3_scenario_field_objective_encounter
 
-    "Romance ending"
+    rpg_other "You...uh...look a bit different now, [game_state.t3_training_dummy_known_name]."
+    rpg_other "...I suppose we both do."
+
+    rpg_training_dummy "Does that mean you don't want to...?"
+
+    rpg_other "Keh? I thought {i}you{/i} didn't want to."
+
+    rpg_training_dummy "No, no, that's not it! I-I'm just... well, you know how shy I can be."
+    rpg_training_dummy "I was nervous, afraid of change, afraid of moving forward. But now..."
+    rpg_training_dummy "...I'll never be able to marry you like this. I'm so sorry, [game_state.t3_egg_man_known_name]!"
+
+    rpg_other "Don't be. I'll wait for you as long as it takes, [game_state.t3_training_dummy_known_name]."
+    rpg_other "...If you'll have me, that is."
+    rpg_other "Sorry for letting my broken heart get the best of me. I should never have run off like that."
+
+    rpg_training_dummy "O-of course! It's okay, I don't blame you. I might have done the same, if I could."
+    rpg_training_dummy "...I love you, [game_state.t3_egg_man_known_name]."
+    rpg_training_dummy "I just can't believe it took us all getting cursed for me to finally say it."
+
+    rpg_other "Perhaps our new friends will be able to help with that."
+
+    rpg_sporty "That's right, you can count on us!"
+    rpg_sporty "We'll stop that stuck-up knight guy and find a way to turn you all back to normal."
+    rpg_sporty "Because we're friends now, and friends look out for each other."
+
+    rpg_perfect ""
 
     return
 

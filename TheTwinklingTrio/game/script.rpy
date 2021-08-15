@@ -14,6 +14,8 @@ define rpg_perfect_character = Character(preferences.t3_rpg_char_perfect_name, c
 define rpg_villain_character_unknown = Character(preferences.t3_rpg_char_villain_title, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
 define rpg_villain_character_known = Character(preferences.t3_rpg_char_villain_name, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
 
+define rpg_training_dummy_character = Character("game_state.t3_training_dummy_known_name", color="#999999", dynamic=true)
+
 # get capitalized versions of pronouns because Ren'Py can't handle .capitalize() in a say block
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
 define t3_pronoun_nerdy_obj_cap = preferences.t3_pronoun_nerdy_obj.capitalize()
@@ -28,6 +30,10 @@ define t3_rpg_pronoun_nerdy_poss_cap = preferences.t3_rpg_pronoun_nerdy_poss.cap
 define t3_rpg_pronoun_nerdy_ref_cap = preferences.t3_rpg_pronoun_nerdy_ref.capitalize()
 
 define t3_rpg_pronoun_sporty_sub_cap = preferences.t3_rpg_pronoun_sporty_sub.capitalize()
+define t3_rpg_pronoun_sporty_obj_cap = preferences.t3_rpg_pronoun_sporty_obj.capitalize()
+define t3_rpg_pronoun_sporty_pos_cap = preferences.t3_rpg_pronoun_sporty_pos.capitalize()
+define t3_rpg_pronoun_sporty_poss_cap = preferences.t3_rpg_pronoun_sporty_poss.capitalize()
+define t3_rpg_pronoun_sporty_ref_cap = preferences.t3_rpg_pronoun_sporty_ref.capitalize()
 
 define t3_rpg_pronoun_perfect_sub_cap = preferences.t3_rpg_pronoun_perfect_sub.capitalize()
 define t3_rpg_pronoun_perfect_obj_cap = preferences.t3_rpg_pronoun_perfect_obj.capitalize()
@@ -98,6 +104,15 @@ image villain_icon = Composite(
     (30, 29), "boss grave knight"
 )
 
+image training_dummy_icon = Composite(
+    (315, 315),
+    (0,0), ConditionSwitch(
+        "game_state.t3_current_speaker == game_state.t3_training_dummy", "active speaker background",
+        "True", Null()
+    ),
+    (30, 29), "npc field quest"
+)
+
 image other_icon = Composite(
     (315, 315),
     (0,0), ConditionSwitch(
@@ -160,6 +175,11 @@ init python:
         else:
             rpg_villain_character_unknown(what, **kwargs)
 
+        game_state.t3_current_speaker = None
+
+    def rpg_training_dummy(what, **kwargs):
+        game_state.t3_current_speaker = game_state.t3_training_dummy
+        rpg_training_dummy_character(what, **kwargs)
         game_state.t3_current_speaker = None
 
     def rpg_other(what, **kwargs):
