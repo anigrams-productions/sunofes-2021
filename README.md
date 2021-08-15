@@ -22,33 +22,24 @@ Planning
 Writing
 - [x] Field - Intro
 - [x] Field - Quest
-- [ ] Field - Enemies
-- [ ] Field - Boss
-- [ ] Field - Endings
+- [x] Field - Endings
 - [ ] Volcano - Intro
 - [ ] Volcano - Quest
-- [ ] Volcano - Enemies
-- [ ] Volcano - Boss
 - [ ] Volcano - Endings
 - [ ] Desert - Intro
 - [ ] Desert - Quest
-- [ ] Desert - Enemies
-- [ ] Desert - Boss
 - [ ] Desert - Endings
 - [ ] Snow - Intro
 - [ ] Snow - Quest
-- [ ] Snow - Enemies
-- [ ] Snow - Boss
 - [ ] Snow - Endings
 - [ ] Graveyard - Intro
 - [ ] Graveyard - Quest
-- [ ] Graveyard - Enemies
-- [ ] Graveyard - Boss
 - [ ] Graveyard - Endings
 
 Programming
 - [x] Outer Gameplay Loop (Encounter)
 - [x] Inner Gameplay Loop (Scenario)
+- [ ] Combat
 - [ ] Add Music
 
 Extra (after the Game Jam)
