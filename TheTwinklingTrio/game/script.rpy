@@ -14,7 +14,7 @@ define rpg_perfect_character = Character(preferences.t3_rpg_char_perfect_name, c
 define rpg_villain_character_unknown = Character(preferences.t3_rpg_char_villain_title, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
 define rpg_villain_character_known = Character(preferences.t3_rpg_char_villain_name, color="#93aeaf", what_font="fonts/monster/Macondo-Regular.ttf")
 
-define rpg_training_dummy_character = Character("game_state.t3_training_dummy_known_name", color="#999999", dynamic=true)
+define rpg_training_dummy_character = Character("game_state.t3_training_dummy_known_name", color="#999999", dynamic=True)
 
 # get capitalized versions of pronouns because Ren'Py can't handle .capitalize() in a say block
 define t3_pronoun_nerdy_sub_cap = preferences.t3_pronoun_nerdy_sub.capitalize()
@@ -202,8 +202,8 @@ label t3_introduction:
     # jump expression game_state.t3_current_encounter.scenario_boss.script
     # $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
     # jump t3_scenario_field_quest
-    $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_objective
-    jump t3_scenario_field_objective
+    # $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_objective
+    # jump t3_scenario_field_objective
 
     scene bg sunny
 
@@ -275,7 +275,7 @@ label t3_introduction:
 
     nerdy "This is a role-playing game in a fantasy setting with humans, monsters, fairies, and sorcerers."
     nerdy "Entire human villages have started disappearing off the map and no one knows why."
-    nerdy "We have to work together to uncover what's happening and put a stop to it before more innocent lives are lost."
+    nerdy "We'll have to work together to uncover what's happening and put a stop to it before more innocent lives are lost."
 
     show nerdy casual 1
 
@@ -938,9 +938,11 @@ label t3_introduction_nerdy_character_creation:
 label t3_start_game:
     # Start the RPG portion of the game
 
-    call expression game_state.t3_current_encounter.script
+    call expression game_state.t3_current_encounter.script from _call_expression
 
-    "We're back at the start label."
+    scene black
+
+    "To be continued..."
 
     # This ends the game.
 

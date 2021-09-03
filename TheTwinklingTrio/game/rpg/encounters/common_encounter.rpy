@@ -2,28 +2,28 @@ label t3_encounter_scenarios_play:
     ## Start by meeting the quest giver
     $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_quest
     $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
-    call expression game_state.t3_current_encounter.scenario_quest.script
-    call t3_encounter_scenario_end
+    call expression game_state.t3_current_encounter.scenario_quest.script from _call_expression_1
+    call t3_encounter_scenario_end from _call_t3_encounter_scenario_end
 
     ## Begin the random scenarios...
     $ scenario_count = 1
     while scenario_count <= game_state.t3_current_encounter.number_of_scenarios:
         # "This is scenario [scenario_count] out of [game_state.t3_current_encounter.number_of_scenarios]. Current player is [game_state.t3_current_player.name]."
-        call t3_encounter_scenario_select
+        call t3_encounter_scenario_select from _call_t3_encounter_scenario_select
 
         $ scenario_count += 1
 
     ## Meet the boss
     $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_boss
     $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
-    call expression game_state.t3_current_encounter.scenario_boss.script
-    call t3_encounter_scenario_end
+    call expression game_state.t3_current_encounter.scenario_boss.script from _call_expression_2
+    call t3_encounter_scenario_end from _call_t3_encounter_scenario_end_1
 
     ## Finally, reach the objective
     $ game_state.t3_current_scenario = game_state.t3_current_encounter.scenario_objective
     $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
-    call expression game_state.t3_current_encounter.scenario_objective.script
-    call t3_encounter_scenario_end
+    call expression game_state.t3_current_encounter.scenario_objective.script from _call_expression_3
+    call t3_encounter_scenario_end from _call_t3_encounter_scenario_end_2
         
     jump expression "t3_encounter_" + game_state.t3_current_encounter.theme + "_success"
 
@@ -33,9 +33,9 @@ label t3_encounter_scenario_select:
     if game_state.t3_current_scenario.current_entity:
         $ game_state.t3_current_scenario.current_entity.update_character_name(game_state.t3_current_scenario.current_entity.name)
 
-    call expression game_state.t3_current_scenario.script
+    call expression game_state.t3_current_scenario.script from _call_expression_4
 
-    call t3_encounter_scenario_end
+    call t3_encounter_scenario_end from _call_t3_encounter_scenario_end_3
 
     $ game_state.t3_current_player = game_state.t3_current_encounter.get_next_player()
     
@@ -54,7 +54,7 @@ label t3_encounter_scenario_end:
     $ active_player_count = 0
     while active_player_count < len(game_state.t3_remaining_players):
         if game_state.t3_remaining_players[active_player_count].can_level_up():
-            call expression "t3_encounter_scenario_level_up_" + game_state.t3_remaining_players[active_player_count].character_type
+            call expression "t3_encounter_scenario_level_up_" + game_state.t3_remaining_players[active_player_count].character_type from _call_expression_5
         
         $ active_player_count += 1
 

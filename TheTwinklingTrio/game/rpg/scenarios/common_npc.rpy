@@ -8,7 +8,7 @@ label t3_scenario_merchant:
 
     "A merchant has set up shop, shelves stocked and ready to peddle to any passersby."
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_5
 
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         rpg_nerdy "Looks like a good place to shop."
@@ -68,6 +68,6 @@ label t3_scenario_merchant:
 
     rpg_other "Thank you and come again."
 
-    call t3_scenario_hide_trio
+    call t3_scenario_hide_trio from _call_t3_scenario_hide_trio_3
 
     return

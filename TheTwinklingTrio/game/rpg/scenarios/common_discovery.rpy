@@ -1,5 +1,5 @@
 label t3_scenario_campfire:
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_1
 
     "The weary party came across an inviting campfire."
     "Its soothing flames seemed like they could cure all ills and restore the party's strength."
@@ -28,12 +28,12 @@ label t3_scenario_campfire:
         "Continue forward":
             "Despite the allure of the campfire, the party decided to push forward, confident in their ability to take on the dangers ahead."
 
-    call t3_scenario_hide_trio
+    call t3_scenario_hide_trio from _call_t3_scenario_hide_trio_1
 
     return
 
 label t3_scenario_treasure:
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_2
 
     $ treasure_reward = renpy.random.randint(1,1000)
 
@@ -52,7 +52,7 @@ label t3_scenario_treasure:
     $ game_state.t3_current_player.treasure_found.append(game_state.t3_current_scenario)
     $ game_state.t3_current_player.money_found += treasure_reward
 
-    call t3_scenario_hide_trio
+    call t3_scenario_hide_trio from _call_t3_scenario_hide_trio_2
 
     return
 

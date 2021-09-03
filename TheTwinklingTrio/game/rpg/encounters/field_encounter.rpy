@@ -18,16 +18,16 @@ label t3_encounter_field_start:
 
     "Chapter 1: In Fields Where We Lay"
 
-    call t3_encounter_scenarios_play
+    call t3_encounter_scenarios_play from _call_t3_encounter_scenarios_play_1
 
     return
 
 label t3_encounter_field_success:
-    "You won!"
+    # "You won!"
 
     return
 
 label t3_encounter_field_failure:
-    "You lost..."
+    # "You lost..."
 
     return

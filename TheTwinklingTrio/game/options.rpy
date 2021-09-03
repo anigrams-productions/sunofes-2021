@@ -16,7 +16,7 @@ define config.name = _("The Twinkling Trio")
 
 # Once program starts, set the game title to be what's currently saved in preferences
 init python:
-    config.name = preferences.rpg_group_name
+    config.name = preferences.t3_rpg_group_name
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -225,7 +225,7 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+define build.itch_project = "anigrams/the-twinkling-trio"
 
 ## Other configuration #######################
 

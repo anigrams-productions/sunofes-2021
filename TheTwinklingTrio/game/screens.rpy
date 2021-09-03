@@ -757,7 +757,7 @@ screen preferences():
 
                 vbox:
                     style_prefix "radio"
-                    label _("Unique Fonts for Characters *")
+                    label _("Unique Fonts for Monsters *")
                     textbutton _("On") action SetField(preferences, "t3_use_character_specific_fonts", True)
                     textbutton _("Off") action SetField(preferences, "t3_use_character_specific_fonts", False)
 

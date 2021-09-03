@@ -8,7 +8,7 @@ label t3_encounter_grave_start:
 
     # "Chapter 5: ???"
 
-    call t3_encounter_scenarios_play
+    call t3_encounter_scenarios_play from _call_t3_encounter_scenarios_play_3
 
     return
 

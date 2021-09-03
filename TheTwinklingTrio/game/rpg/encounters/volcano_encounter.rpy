@@ -8,7 +8,7 @@ label t3_encounter_volcano_start:
 
     # "Chapter 2: ???"
 
-    call t3_encounter_scenarios_play
+    call t3_encounter_scenarios_play from _call_t3_encounter_scenarios_play
 
     return
 

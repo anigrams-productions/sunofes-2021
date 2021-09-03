@@ -16,7 +16,7 @@ label t3_scenario_field_quest:
     "The empty meadow was eerily quiet."
     "No animals, no monsters, no humans. Only silence."
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio
 
     "The party looked around as they discussed their next move."
 
@@ -67,7 +67,7 @@ label t3_scenario_field_quest:
     # Make sure nerdy is the current player
     $ game_state.t3_current_player = game_state.t3_player_nerdy
 
-    call t3_scenario_player_action_select
+    call t3_scenario_player_action_select from _call_t3_scenario_player_action_select
 
     rpg_other "The only thing I remember is that I had a fight with my best friend back when I was human."
     rpg_other "It was such a silly, pointless fight. All I want to do is find him and tell him how sorry I am, but I can't look for him like this."
@@ -115,7 +115,7 @@ label t3_scenario_field_quest:
     # Save current NPC's name for later
     $ game_state.t3_training_dummy_known_name = game_state.t3_current_scenario.current_entity.name
 
-    call t3_scenario_hide_trio
+    call t3_scenario_hide_trio from _call_t3_scenario_hide_trio
 
     return
 

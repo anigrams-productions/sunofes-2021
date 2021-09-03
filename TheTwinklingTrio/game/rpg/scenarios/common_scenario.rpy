@@ -36,7 +36,7 @@ label t3_scenario_player_action_select:
     $ current_action_menu = []
 
     while game_state.t3_current_scenario.keep_going:
-        call t3_scenario_hide_dice_roll
+        call t3_scenario_hide_dice_roll from _call_t3_scenario_hide_dice_roll
 
         # Try to grab actions for the this round - if there aren't any, we must be done
         python:
@@ -64,7 +64,7 @@ label t3_scenario_player_action_select:
             $ game_state.t3_current_player.update_mana(game_state.t3_current_action.mana_cost * -1)
             $ game_state.t3_current_player.update_money(game_state.t3_current_action.money_cost * -1)
 
-            call t3_scenario_dice_roll
+            call t3_scenario_dice_roll from _call_t3_scenario_dice_roll
 
             $ game_state.t3_current_action.attribute_points_required = game_state.t3_total_dice_roll
 
@@ -88,9 +88,9 @@ label t3_scenario_player_action_select:
             else:
                 "The check was not successful."
 
-            call t3_scenario_hide_dice_roll
+            call t3_scenario_hide_dice_roll from _call_t3_scenario_hide_dice_roll_1
 
-            call expression game_state.t3_current_action.return_action_result()
+            call expression game_state.t3_current_action.return_action_result() from _call_expression_6
 
             $ experience_gained = game_state.t3_current_player.gain_experience(game_state.t3_action_successful)
 

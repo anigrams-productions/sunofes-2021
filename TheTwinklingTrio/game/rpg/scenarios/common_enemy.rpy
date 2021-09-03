@@ -13,7 +13,12 @@ define t3_scenario_enemy_player_actions = [
 label t3_scenario_enemy_end:
     $ game_state.t3_current_player.enemies_met.append(game_state.t3_current_scenario.current_entity)
 
-    call t3_scenario_hide_trio
+    call t3_scenario_hide_trio from _call_t3_scenario_hide_trio_4
+
+    return
+
+label t3_scenario_enemy_battle_start:
+    "(Imagine a super cool battle here)"
 
     return
 
@@ -22,7 +27,7 @@ label t3_scenario_enemy_dragon:
 
     "A wild dragon appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_7
 
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
@@ -55,7 +60,9 @@ label t3_scenario_enemy_dragon:
 
             rpg_perfect "Time to fight."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_1
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_1
 
     return
 
@@ -64,7 +71,7 @@ label t3_scenario_enemy_orc:
 
     "A wild orc appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_8
 
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
@@ -101,7 +108,9 @@ label t3_scenario_enemy_orc:
             rpg_perfect "We can't blame them for defending their territory."
             rpg_perfect "But sadly, it looks like we'll have to fight all the same."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_2
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_2
 
     return
 
@@ -110,7 +119,7 @@ label t3_scenario_enemy_fish:
 
     "A wild fish appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_9
 
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
@@ -150,7 +159,9 @@ label t3_scenario_enemy_fish:
             rpg_perfect "Do you think the fish is intelligent enough to know I'm talking about eating its friends?"
             rpg_perfect "Fine, I suppose I'll refrain from talking about cooking fish in front of it."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_3
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_3
 
     return
 
@@ -159,27 +170,30 @@ label t3_scenario_enemy_reptile:
 
     "A wild reptile appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_10
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about reptiles."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about reptiles."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about reptiles."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_4
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_4
 
     return
 
@@ -188,27 +202,30 @@ label t3_scenario_enemy_mammal:
 
     "A wild mammal appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_11
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about mammals."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about mammals."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about mammals."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_5
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_5
 
     return
 
@@ -217,27 +234,30 @@ label t3_scenario_enemy_bird:
 
     "A wild bird appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_12
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about birds."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about birds."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about birds."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_6
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_6
 
     return
 
@@ -246,27 +266,30 @@ label t3_scenario_enemy_insect:
 
     "A wild insect appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_13
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about insects."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about insects."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about insects."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_7
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_7
 
     return
 
@@ -275,27 +298,30 @@ label t3_scenario_enemy_knight:
 
     "A wild knight appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_14
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about knights."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about knights."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about knights."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_8
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_8
 
     return
 
@@ -304,27 +330,30 @@ label t3_scenario_enemy_goblin:
 
     "A wild goblin appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_15
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about goblins."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about goblins."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about goblins."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_9
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_9
 
     return
 
@@ -333,27 +362,30 @@ label t3_scenario_enemy_spirit:
 
     "A wild spirit appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_16
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about spirits."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about spirits."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about spirits."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_10
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_10
 
     return
 
@@ -362,27 +394,30 @@ label t3_scenario_enemy_slime:
 
     "A wild slime appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_17
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about slimes."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about slimes."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about slimes."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_11
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_11
 
     return
 
@@ -391,27 +426,30 @@ label t3_scenario_enemy_plant:
 
     "A wild plant appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_18
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about plants."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about plants."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about plants."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_12
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_12
 
     return
 
@@ -420,27 +458,30 @@ label t3_scenario_enemy_golem:
 
     "A wild golem appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_19
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about golems."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about golems."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about golems."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_13
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_13
 
     return
 
@@ -449,27 +490,30 @@ label t3_scenario_enemy_undead:
 
     "A wild undead appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_20
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about the undead."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about the undead."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about the undead."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_14
+    
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_14
 
     return
 
@@ -478,27 +522,30 @@ label t3_scenario_enemy_demon:
 
     "A wild demon appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_21
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about demons."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about demons."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about demons."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_15
+
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_15
 
     return
 
@@ -507,26 +554,29 @@ label t3_scenario_enemy_robot:
 
     "A wild robot appeared!"
 
-    call t3_scenario_show_trio
+    call t3_scenario_show_trio from _call_t3_scenario_show_trio_22
 
+    # FIXME
     if game_state.t3_current_player.character_type == CharacterType.Nerdy:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_nerdy ""
+            rpg_nerdy "I've fought this type of enemy before."
         else:
-            rpg_nerdy ""
+            rpg_nerdy "Some day I'll have something interesting to say about robots."
 
     elif game_state.t3_current_player.character_type == CharacterType.Sporty:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_sporty ""
+            rpg_sporty "I've fought this type of enemy before."
         else:
-            rpg_sporty ""
+            rpg_sporty "Some day I'll have something interesting to say about robots."
 
     elif game_state.t3_current_player.character_type == CharacterType.Perfect:
         if game_state.t3_current_player.has_encountered_enemy_type(game_state.t3_current_scenario.current_entity):
-            rpg_perfect ""
+            rpg_perfect "I've fought this type of enemy before."
         else:
-            rpg_perfect ""
+            rpg_perfect "Some day I'll have something interesting to say about robots."
 
-    call t3_scenario_enemy_end
+    call t3_scenario_enemy_battle_start from _call_t3_scenario_enemy_battle_start_16
+    
+    call t3_scenario_enemy_end from _call_t3_scenario_enemy_end_16
 
     return

@@ -1,5 +1,5 @@
 label t3_scenario_grave_merchant:
-    call t3_scenario_merchant
+    call t3_scenario_merchant from _call_t3_scenario_merchant_1
 
     return
 

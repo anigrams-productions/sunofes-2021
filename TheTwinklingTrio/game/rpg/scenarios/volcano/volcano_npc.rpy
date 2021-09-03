@@ -1,5 +1,5 @@
 label t3_scenario_volcano_merchant:
-    call t3_scenario_merchant
+    call t3_scenario_merchant from _call_t3_scenario_merchant_4
 
     return
 

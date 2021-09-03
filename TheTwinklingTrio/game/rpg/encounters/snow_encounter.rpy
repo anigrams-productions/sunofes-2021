@@ -8,7 +8,7 @@ label t3_encounter_snow_start:
 
     # "Chapter 4: ???"
 
-    call t3_encounter_scenarios_play
+    call t3_encounter_scenarios_play from _call_t3_encounter_scenarios_play_4
 
     return
 

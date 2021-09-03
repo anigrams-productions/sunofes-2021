@@ -8,7 +8,7 @@ label t3_encounter_desert_start:
 
     # "Chapter 3: ???"
 
-    call t3_encounter_scenarios_play
+    call t3_encounter_scenarios_play from _call_t3_encounter_scenarios_play_2
 
     return
 
